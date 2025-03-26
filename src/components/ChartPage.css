@@ -1,0 +1,270 @@
+/* components/ChartPage.css */
+.chart-page {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.chart-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px; /* เพิ่มขนาดหัวข้อหน้า */
+    font-style: normal; /* ตรวจสอบว่าไม่เอียง */
+}
+
+.charts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+    justify-content: space-around; /* จัดกราฟให้กระจายอย่างสมดุล */
+}
+
+.charts div {
+    flex: 1 1 600px; /* กำหนดขนาดขั้นต่ำ 600px และให้ขยายตามพื้นที่ */
+    max-width: 700px; /* จำกัดขนาดสูงสุดของแต่ละกราฟ */
+}
+/* ปรับขนาดสำหรับ Pie Chart โดยเฉพาะ */
+.charts div:last-child {
+    flex: 1 1 400px; /* Pie Chart ขนาดเล็กกว่า */
+    max-width: 500px;
+}
+
+
+/* ปุ่มดาวน์โหลด */
+.chart-download-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center; /* จัดปุ่มให้อยู่กึ่งกลาง */
+}
+
+/* ปุ่มกลับไปหน้าสถิติ */
+.chart-nav-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.chart-nav-button,
+.chart-download-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+/* สไตล์ปุ่ม */
+.download-btn,
+.navigate-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* ลดขนาดตัวอักษรให้เหมาะสม */
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover,
+.navigate-btn:hover {
+    background-color: #45a049;
+}
+
+canvas {
+    max-width: 100% !important; /* ให้กราฟใช้ความกว้างเต็ม div */
+    max-height: 500px !important; /* เพิ่มความสูงของกราฟ */
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* ข้อความข้อผิดพลาด */
+.error {
+    color: #e74c3c;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+/* ปรับสำหรับหน้าจอขนาดเล็ก */
+@media (max-width: 768px) {
+    .charts div {
+        flex: 1 1 100%; /* ให้กราฟใช้ความกว้างเต็มในหน้าจอเล็ก */
+        max-width: 100%;
+    }
+
+    canvas {
+        max-height: 400px !important; /* ลดความสูงในหน้าจอเล็ก */
+    }
+    .filter-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-section label,
+    .filter-section select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+/* components/ChartPage.css */
+.chart-page {
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.chart-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px; /* เพิ่มขนาดหัวข้อหน้า */
+    font-style: normal; /* ตรวจสอบว่าไม่เอียง */
+}
+
+/* สไตล์สำหรับตัวเลือกเดือนและปี */
+.filter-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.filter-section .month-filter,
+.filter-section .year-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.filter-section label {
+    font-size: 16px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.filter-section select {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.filter-section select:hover,
+.filter-section select:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.charts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+    justify-content: space-around; /* จัดกราฟให้กระจายอย่างสมดุล */
+}
+
+.charts div {
+    flex: 1 1 600px; /* กำหนดขนาดขั้นต่ำ 600px และให้ขยายตามพื้นที่ */
+    max-width: 700px; /* จำกัดขนาดสูงสุดของแต่ละกราฟ */
+}
+
+/* ปรับขนาดสำหรับ Pie Chart โดยเฉพาะ */
+.charts div:last-child {
+    flex: 1 1 400px; /* Pie Chart ขนาดเล็กกว่า */
+    max-width: 500px;
+}
+
+.chart-download-buttons,
+.chart-nav-button {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+/* ปุ่มกลับไปหน้าสถิติ */
+.chart-nav-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* สไตล์ปุ่ม */
+.download-btn,
+.navigate-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* ลดขนาดตัวอักษรให้เหมาะสม */
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover,
+.navigate-btn:hover {
+    background-color: #45a049;
+}
+
+canvas {
+    max-width: 100% !important; /* ให้กราฟใช้ความกว้างเต็ม div */
+    max-height: 500px !important; /* เพิ่มความสูงของกราฟ */
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* ข้อความข้อผิดพลาด */
+.error {
+    color: #e74c3c;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+/* ปรับสำหรับหน้าจอขนาดเล็ก */
+@media (max-width: 768px) {
+    .charts div {
+        flex: 1 1 100%; /* ให้กราฟใช้ความกว้างเต็มในหน้าจอเล็ก */
+        max-width: 100%;
+    }
+
+    canvas {
+        max-height: 400px !important; /* ลดความสูงในหน้าจอเล็ก */
+    }
+    .chart-container {
+        position: relative;
+        flex: 1 1 600px;
+        max-width: 700px;
+        background-color: #f9f9f9; /* พื้นหลังสีอ่อน */
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเล็กน้อย */
+    }
+
+    /* ปรับขนาดสำหรับ Pie Chart */
+.chart-container:last-child {
+    flex: 1 1 400px;
+    max-width: 500px;
+}
+
+    .filter-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .filter-section label,
+    .filter-section select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

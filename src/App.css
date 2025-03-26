@@ -1,0 +1,89 @@
+/* app-section & app-container */
+.app-section {
+  padding: 2rem;  /* เพิ่ม padding  */
+}
+
+.app-container {
+  max-width: 1000px;
+  margin: 0 auto; 
+  padding: 0 1rem; 
+
+}
+
+/* app-grid */
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  /* ปรับขนาด grid item  */
+  gap: 1.0rem;  /* เพิ่ม gap  */
+}
+
+/* ปรับขนาด h1 */
+.app-section .container h1 {
+  text-align: center;
+  font-size: 2rem; 
+  margin-bottom: 1.5rem; 
+}
+
+.app-section .container p {
+  text-align: center;
+  font-size: 1.2rem; 
+  
+}
+/* Button Container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* เพิ่มระยะห่าง */
+  position: sticky; /* เปลี่ยนเป็น position: sticky */
+  bottom: 0; /* ติดด้านล่าง viewport */
+  background-color: rgb(255, 255, 255); /* เพิ่มสีพื้นหลัง (อาจจำเป็นต้องปรับ) */
+  z-index: 10; /* ให้ button-container อยู่บน layer อื่นๆ  */ 
+  flex-direction: column; /* จัดเรียง element เป็นแนวตั้ง */
+  align-items: center; /* จัด element ให้ตรงกลางแนวนอน */
+}
+
+
+
+/* ปรับ submit-button */
+.submit-button {
+  padding: 0.8rem 1.8rem; /* ปรับ padding */
+  font-size: 1rem; 
+  width: 60%;
+  max-width: 400px; 
+  background-color: #28a745;  /* เปลี่ยนสีปุ่ม */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* เพิ่ม transition */ 
+ 
+}
+
+
+.submit-button:hover {
+  background-color: #218838;  /* เปลี่ยนสีปุ่มตอน hover */ 
+}
+
+.submit-button:hover {
+  background-color: #218838;  /* เปลี่ยนสีปุ่มตอน hover */ 
+}
+
+/* กำหนด style สำหรับปุ่มยืนยันที่อยู่ด้านในกรอบ */
+.button-inside {
+  margin-top: 10px; /* ระยะห่างระหว่าง input กับปุ่ม */
+}
+/* form div */
+form div {
+  margin-bottom: 1rem; 
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .app-section {
+    padding: 1rem; 
+  }
+
+  .app-grid {
+    grid-template-columns: 1fr;
+  }
+}
