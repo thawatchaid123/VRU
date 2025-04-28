@@ -1,0 +1,114 @@
+.app-header {
+  background-color:  #39556bdd;
+  padding: 2rem 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.app-header-logo {
+  height: 95px;
+}
+
+.header-center {
+  font-size: 2.5rem;
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.header-center a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+.header-nav li {
+  margin: 0;
+  /* เอา margin ออก */
+}
+
+.header-nav .header-right,
+.header-nav .header-rights {
+  font-size: 1.5rem;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: rgb(254, 253, 253);
+  /* font-size: 2.5rem; */
+}
+
+
+.hamburger-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* Responsive Design สำหรับหน้าจอขนาดเล็ก */
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .header-center {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .header-nav {
+    display: none;
+    /* ซ่อนเมนูเมื่อเป็นหน้าจอเล็ก */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #2196f3;
+    flex-direction: column;
+    padding: 1rem 0;
+    transition: height 0.3s ease-in-out;
+  }
+
+  .header-nav.show {
+    display: flex;
+  }
+
+  .header-nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .header-nav li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hamburger-button {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}

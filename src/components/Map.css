@@ -1,0 +1,15 @@
+.map-container {
+    width: 20%; /* ความกว้าง 70% */
+    height: 1000px; /* ความสูงคงที่ */
+    margin: 0 auto; /* จัดกึ่งกลางแนวนอน */
+    border: 2px solid #d20d0d; /* ขอบสีเทาอ่อน */
+    border-radius: 800px; /* มุมโค้งมน */
+  }
+  
+  @media screen and (max-width: 768px) {
+    .map-container {
+      width: 100%; /* ปรับความกว้างเป็น 100% เมื่อหน้าจอเล็ก */
+      height: 300px; /* ลดความสูงลงเพื่อให้เข้ากับหน้าจอที่เล็กลง */
+    }
+  }
+  

@@ -1,0 +1,376 @@
+Array
+(
+    [REQUEST] => Array
+        (
+        )
+
+    [POST] => Array
+        (
+        )
+
+    [INPUT] => {"username":"tawatchaid.hua@vru.ac.th","password":"0653379115"}
+    [HEADERS] => Array
+        (
+            [x-forwarded-host] => localhost:3000
+            [x-forwarded-proto] => http
+            [x-forwarded-port] => 3000
+            [x-forwarded-for] => 127.0.0.1
+            [accept-language] => en-US,en;q=0.9
+            [accept-encoding] => gzip, deflate, br, zstd
+            [referer] => http://localhost:3000/login
+            [sec-fetch-dest] => empty
+            [sec-fetch-mode] => cors
+            [sec-fetch-site] => same-origin
+            [origin] => http://localhost/
+            [sec-ch-ua-mobile] => ?0
+            [content-type] => application/json
+            [sec-ch-ua] => "Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"
+            [accept] => application/json
+            [user-agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+            [sec-ch-ua-platform] => "Windows"
+            [content-length] => 63
+            [connection] => close
+            [host] => localhost
+        )
+
+)
+[2025-01-12 05:32:25] Array
+(
+    [REQUEST] => Array
+        (
+        )
+
+    [POST] => Array
+        (
+        )
+
+    [INPUT] => {"username":"tawatchaid.hua@vru.ac.th","password":"0653379115"}
+    [HEADERS] => Array
+        (
+            [x-forwarded-host] => localhost:3000
+            [x-forwarded-proto] => http
+            [x-forwarded-port] => 3000
+            [x-forwarded-for] => 127.0.0.1
+            [cookie] => PHPSESSID=hjscfs6cfcrg3334l6p4gtnlp8
+            [accept-language] => en-US,en;q=0.9
+            [accept-encoding] => gzip, deflate, br, zstd
+            [referer] => http://localhost:3000/login
+            [sec-fetch-dest] => empty
+            [sec-fetch-mode] => cors
+            [sec-fetch-site] => same-origin
+            [origin] => http://localhost/
+            [sec-ch-ua-mobile] => ?0
+            [content-type] => application/json
+            [sec-ch-ua] => "Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"
+            [accept] => application/json
+            [user-agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+            [sec-ch-ua-platform] => "Windows"
+            [content-length] => 63
+            [connection] => close
+            [host] => localhost
+        )
+
+)
+
+[2025-01-12 06:33:17] Array
+(
+    [REQUEST] => Array
+        (
+        )
+
+    [POST] => Array
+        (
+        )
+
+    [INPUT] => {"username":"tom@gmail.com","password":"64122420010"}
+    [HEADERS] => Array
+        (
+            [x-forwarded-host] => localhost:3000
+            [x-forwarded-proto] => http
+            [x-forwarded-port] => 3000
+            [x-forwarded-for] => 127.0.0.1
+            [accept-language] => en-US,en;q=0.9
+            [accept-encoding] => gzip, deflate, br, zstd
+            [referer] => http://localhost:3000/login
+            [sec-fetch-dest] => empty
+            [sec-fetch-mode] => cors
+            [sec-fetch-site] => same-origin
+            [origin] => http://localhost/
+            [sec-ch-ua-mobile] => ?0
+            [content-type] => application/json
+            [sec-ch-ua] => "Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"
+            [accept] => application/json
+            [user-agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+            [sec-ch-ua-platform] => "Windows"
+            [content-length] => 53
+            [connection] => close
+            [host] => localhost
+        )
+
+)
+
+[2025-01-14 05:23:29] Array
+(
+    [REQUEST] => Array
+        (
+        )
+
+    [POST] => Array
+        (
+        )
+
+    [INPUT] => {"username":"tom@gmail.com","password":"64122420010"}
+    [HEADERS] => Array
+        (
+            [x-forwarded-host] => localhost:3000
+            [x-forwarded-proto] => http
+            [x-forwarded-port] => 3000
+            [x-forwarded-for] => 127.0.0.1
+            [accept-language] => en-US,en;q=0.9
+            [accept-encoding] => gzip, deflate, br, zstd
+            [referer] => http://localhost:3000/login
+            [sec-fetch-dest] => empty
+            [sec-fetch-mode] => cors
+            [sec-fetch-site] => same-origin
+            [origin] => http://localhost/
+            [sec-ch-ua-mobile] => ?0
+            [content-type] => application/json
+            [sec-ch-ua] => "Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"
+            [accept] => application/json
+            [user-agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+            [sec-ch-ua-platform] => "Windows"
+            [content-length] => 53
+            [connection] => close
+            [host] => localhost
+        )
+
+)
+
+[2025-01-14 05:24:53] Array
+(
+    [REQUEST] => Array
+        (
+        )
+
+    [POST] => Array
+        (
+        )
+
+    [INPUT] => {"username":"tawatchaid.hua@vru.ac.th","password":"0653379115"}
+    [HEADERS] => Array
+        (
+            [x-forwarded-host] => localhost:3000
+            [x-forwarded-proto] => http
+            [x-forwarded-port] => 3000
+            [x-forwarded-for] => 127.0.0.1
+            [cookie] => PHPSESSID=c73hndfjpk2jki1jpg7841q54s
+            [accept-language] => en-US,en;q=0.9
+            [accept-encoding] => gzip, deflate, br, zstd
+            [referer] => http://localhost:3000/login
+            [sec-fetch-dest] => empty
+            [sec-fetch-mode] => cors
+            [sec-fetch-site] => same-origin
+            [origin] => http://localhost/
+            [sec-ch-ua-mobile] => ?1
+            [content-type] => application/json
+            [sec-ch-ua] => "Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"
+            [accept] => application/json
+            [user-agent] => Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua-platform] => "Android"
+            [content-length] => 63
+            [connection] => close
+            [host] => localhost
+        )
+
+)
+
+[2025-01-14 05:25:01] Array
+(
+    [REQUEST] => Array
+        (
+        )
+
+    [POST] => Array
+        (
+        )
+
+    [INPUT] => {"username":"tawatchaid.hua@vru.ac.th","password":"789456123"}
+    [HEADERS] => Array
+        (
+            [x-forwarded-host] => localhost:3000
+            [x-forwarded-proto] => http
+            [x-forwarded-port] => 3000
+            [x-forwarded-for] => 127.0.0.1
+            [cookie] => PHPSESSID=c73hndfjpk2jki1jpg7841q54s
+            [accept-language] => en-US,en;q=0.9
+            [accept-encoding] => gzip, deflate, br, zstd
+            [referer] => http://localhost:3000/login
+            [sec-fetch-dest] => empty
+            [sec-fetch-mode] => cors
+            [sec-fetch-site] => same-origin
+            [origin] => http://localhost/
+            [sec-ch-ua-mobile] => ?1
+            [content-type] => application/json
+            [sec-ch-ua] => "Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"
+            [accept] => application/json
+            [user-agent] => Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua-platform] => "Android"
+            [content-length] => 62
+            [connection] => close
+            [host] => localhost
+        )
+
+)
+
+[2025-01-14 05:25:07] Array
+(
+    [REQUEST] => Array
+        (
+        )
+
+    [POST] => Array
+        (
+        )
+
+    [INPUT] => {"username":"tawatch555aid.hua@vru.ac.th","password":"789456123"}
+    [HEADERS] => Array
+        (
+            [x-forwarded-host] => localhost:3000
+            [x-forwarded-proto] => http
+            [x-forwarded-port] => 3000
+            [x-forwarded-for] => 127.0.0.1
+            [cookie] => PHPSESSID=c73hndfjpk2jki1jpg7841q54s
+            [accept-language] => en-US,en;q=0.9
+            [accept-encoding] => gzip, deflate, br, zstd
+            [referer] => http://localhost:3000/login
+            [sec-fetch-dest] => empty
+            [sec-fetch-mode] => cors
+            [sec-fetch-site] => same-origin
+            [origin] => http://localhost/
+            [sec-ch-ua-mobile] => ?1
+            [content-type] => application/json
+            [sec-ch-ua] => "Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"
+            [accept] => application/json
+            [user-agent] => Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua-platform] => "Android"
+            [content-length] => 65
+            [connection] => close
+            [host] => localhost
+        )
+
+)
+
+[2025-01-14 05:27:34] Array
+(
+    [REQUEST] => Array
+        (
+        )
+
+    [POST] => Array
+        (
+        )
+
+    [INPUT] => {"username":"tom123@gmail.com","password":"789456"}
+    [HEADERS] => Array
+        (
+            [x-forwarded-host] => localhost:3000
+            [x-forwarded-proto] => http
+            [x-forwarded-port] => 3000
+            [x-forwarded-for] => 127.0.0.1
+            [cookie] => PHPSESSID=c73hndfjpk2jki1jpg7841q54s
+            [accept-language] => en-US,en;q=0.9
+            [accept-encoding] => gzip, deflate, br, zstd
+            [referer] => http://localhost:3000/login
+            [sec-fetch-dest] => empty
+            [sec-fetch-mode] => cors
+            [sec-fetch-site] => same-origin
+            [origin] => http://localhost/
+            [sec-ch-ua-mobile] => ?0
+            [content-type] => application/json
+            [sec-ch-ua] => "Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"
+            [accept] => application/json
+            [user-agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+            [sec-ch-ua-platform] => "Windows"
+            [content-length] => 51
+            [connection] => close
+            [host] => localhost
+        )
+
+)
+
+[2025-01-14 05:27:40] Array
+(
+    [REQUEST] => Array
+        (
+        )
+
+    [POST] => Array
+        (
+        )
+
+    [INPUT] => {"username":"tom123@gmail.com","password":"789456"}
+    [HEADERS] => Array
+        (
+            [x-forwarded-host] => localhost:3000
+            [x-forwarded-proto] => http
+            [x-forwarded-port] => 3000
+            [x-forwarded-for] => 127.0.0.1
+            [cookie] => PHPSESSID=c73hndfjpk2jki1jpg7841q54s
+            [accept-language] => en-US,en;q=0.9
+            [accept-encoding] => gzip, deflate, br, zstd
+            [referer] => http://localhost:3000/login
+            [sec-fetch-dest] => empty
+            [sec-fetch-mode] => cors
+            [sec-fetch-site] => same-origin
+            [origin] => http://localhost/
+            [sec-ch-ua-mobile] => ?1
+            [content-type] => application/json
+            [sec-ch-ua] => "Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"
+            [accept] => application/json
+            [user-agent] => Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua-platform] => "Android"
+            [content-length] => 51
+            [connection] => close
+            [host] => localhost
+        )
+
+)
+
+[2025-01-14 05:27:41] Array
+(
+    [REQUEST] => Array
+        (
+        )
+
+    [POST] => Array
+        (
+        )
+
+    [INPUT] => {"username":"tom123@gmail.com","password":"789456"}
+    [HEADERS] => Array
+        (
+            [x-forwarded-host] => localhost:3000
+            [x-forwarded-proto] => http
+            [x-forwarded-port] => 3000
+            [x-forwarded-for] => 127.0.0.1
+            [cookie] => PHPSESSID=c73hndfjpk2jki1jpg7841q54s
+            [accept-language] => en-US,en;q=0.9
+            [accept-encoding] => gzip, deflate, br, zstd
+            [referer] => http://localhost:3000/login
+            [sec-fetch-dest] => empty
+            [sec-fetch-mode] => cors
+            [sec-fetch-site] => same-origin
+            [origin] => http://localhost/
+            [sec-ch-ua-mobile] => ?1
+            [content-type] => application/json
+            [sec-ch-ua] => "Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"
+            [accept] => application/json
+            [user-agent] => Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36
+            [sec-ch-ua-platform] => "Android"
+            [content-length] => 51
+            [connection] => close
+            [host] => localhost
+        )
+
+)
+

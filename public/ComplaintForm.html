@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ค้นหาข้อมูล</title>
+</head>
+<body>
+    <h2>กรอกเบอร์โทรศัพท์เพื่อติดตามเรื่องร้องเรียน</h2>
+    <form action="result.php" method="POST">
+        <label for="phone_number">เบอร์โทรศัพท์:</label>
+        <input type="text" id="phone_number" name="phone_number" maxlength="10" pattern="[0-9]{10}" required>
+        <button type="submit">ค้นหา</button>
+    </form>
+</body>
+</html>
