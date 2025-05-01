@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Machinery.css';
+import './CSS/Machinery.css';
 
 function Machinery() {
   const [machineType, setMachineType] = useState('');

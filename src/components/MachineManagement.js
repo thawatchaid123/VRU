@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './MachineManagement.css';
+import './CSS/MachineManagement.css';
 
 const API_URL = 'http://localhost/PO/machine_api.php';
 

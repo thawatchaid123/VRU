@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Dashboard.module.css';
+import styles from './CSS/Dashboard.module.css';
 
 const Dashboard = () => {
     let user = null;

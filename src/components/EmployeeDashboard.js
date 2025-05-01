@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import styles from './EmployeeDashboard.module.css';
+import styles from './CSS/EmployeeDashboard.module.css';
 import { Link } from 'react-router-dom';
 
 const EmployeeDashboard = () => {

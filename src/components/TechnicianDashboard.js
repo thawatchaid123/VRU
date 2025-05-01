@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from './TechnicianDashboard.module.css';
+import styles from './CSS/TechnicianDashboard.module.css';
 import axios from 'axios';
 
 const TechnicianDashboard = () => {

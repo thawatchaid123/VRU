@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import './ComplaintForm.css';
+import './CSS/ComplaintForm.css';
 
 const ComplaintForm = () => {
     const [employeeId, setEmployeeId] = useState('');
@@ -11,7 +11,7 @@ const ComplaintForm = () => {
     const getStatusDisplay = (status) => {
         // Convert status to number if it's a string
         const statusCode = typeof status === 'string' ? parseInt(status, 10) : status;
-        
+
         switch (statusCode) {
             case 1:
                 return 'รอดำเนินการ';
@@ -19,7 +19,7 @@ const ComplaintForm = () => {
                 return 'เข้ารับการซ่อมแล้ว';
             case 3:
                 return 'ดำเนินการเสร็จสิ้น';
-                case 4:
+            case 4:
                 return 'ปฏิเสธการซ่อม';
             case 'pending': // Keeping the original text values for backward compatibility
                 return 'รอดำเนินการ';
@@ -37,7 +37,7 @@ const ComplaintForm = () => {
     const getStatusClass = (status) => {
         // แปลงสถานะเป็นตัวเลขถ้ามันเป็นสตริง
         const statusCode = typeof status === 'string' ? parseInt(status, 10) : status;
-        
+
         switch (statusCode) {
             case 1:
                 return 'status-pending';
@@ -45,9 +45,9 @@ const ComplaintForm = () => {
                 return 'status-in-progress';
             case 3:
                 return 'status-completed';
-                case 4:
-                    return 'status-rejected';
-                    
+            case 4:
+                return 'status-rejected';
+
             case 'pending': // รักษาความเข้ากันได้กับค่าข้อความเดิม
                 return 'status-pending';
             case 'in_progress':
@@ -67,7 +67,7 @@ const ComplaintForm = () => {
         setError(null);
 
         try {
-            const response = await fetch('/PO/search.php', {
+            const response = await fetch('/VRU-main/search.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const ComplaintForm = () => {
             });
 
             const data = await response.json();
-            
+
             if (data.reports) {
                 setResult(data.reports);
             } else {
@@ -113,27 +113,27 @@ const ComplaintForm = () => {
             </div>
 
             {result && result.map((item, index) => (
-               
-                 <div key={index} className="complaints-card result-card">
+
+                <div key={index} className="complaints-card result-card">
                     <h3 className="result-header">ข้อมูลการร้องเรียน #{index + 1}</h3>
                     <div className="info-grid">
                         <div className="info-group"><strong>รหัสพนักงาน:</strong> {item.employee_id}</div>
                         <div className="info-group"><strong>ประเภท:</strong> {item.category}</div>
-                       
-                      
+
+
                         <div className="info-group">
-    <strong>สถานะ:</strong> 
-    <span style={{
-        color: item.status === 1 || item.status === 'pending' ? '#2ecc71' : 
-               item.status === 2 || item.status === 'in_progress' ? '#f39c12' :
-               item.status === 3 || item.status === 'completed' ? '#3498db' :
-               item.status === 4 || item.status === 'rejected' ? '#e74c3c' : // เปลี่ยนจาก ##e74c3c เป็น #e74c3c (ลบ # ตัวหน้า)
-               'inherit',
-        fontWeight: 'bold'
-    }}>
-        {getStatusDisplay(item.status)}
-    </span>
-</div>
+                            <strong>สถานะ:</strong>
+                            <span style={{
+                                color: item.status === 1 || item.status === 'pending' ? '#2ecc71' :
+                                    item.status === 2 || item.status === 'in_progress' ? '#f39c12' :
+                                        item.status === 3 || item.status === 'completed' ? '#3498db' :
+                                            item.status === 4 || item.status === 'rejected' ? '#e74c3c' : // เปลี่ยนจาก ##e74c3c เป็น #e74c3c (ลบ # ตัวหน้า)
+                                                'inherit',
+                                fontWeight: 'bold'
+                            }}>
+                                {getStatusDisplay(item.status)}
+                            </span>
+                        </div>
 
                         <div className="info-group"><strong>วันที่สร้าง:</strong> {item.created_at}</div>
                         <div className="info-group detail-group">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Employee.css';
+import './CSS/Employee.css';
 import { useNavigate } from "react-router-dom"; // นำเข้า useNavigate
 
 

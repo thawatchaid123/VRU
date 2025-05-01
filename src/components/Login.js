@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './Login.module.css';
+import styles from './CSS/Login.module.css';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -18,11 +18,14 @@ const Login = () => {
             username: username.trim(),
             password: password
         };
-        
+
         console.log('Sending data:', requestData);
 
         try {
-            const response = await fetch('/PO/login.php', {
+            // const response = await fetch('/PO/login.php', {
+            // const response = await fetch('http://localhost/PO/login.php', {
+                const response = await fetch('/VRU-main/login.php', {
+
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -40,7 +43,7 @@ const Login = () => {
 
             const text = await response.text();
             console.log('Raw response:', text);
-            
+
             let data;
             try {
                 data = JSON.parse(text);
@@ -51,7 +54,7 @@ const Login = () => {
 
             if (data.status === 'success' && data.user) {
                 localStorage.setItem('user', JSON.stringify(data.user));
-                
+
                 // Redirect based on user type
                 switch (data.user.user_type) {
                     case 'employee':
@@ -81,7 +84,7 @@ const Login = () => {
         <div className={styles.loginContainer}>
             <form onSubmit={handleSubmit} className={styles.loginForm}>
                 <h2>เข้าสู่ระบบ</h2>
-                
+
                 {error && (
                     <div className={styles.error}>{error}</div>
                 )}
@@ -108,8 +111,8 @@ const Login = () => {
                     />
                 </div>
 
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     className={styles.loginButton}
                     disabled={isLoading}
                 >
