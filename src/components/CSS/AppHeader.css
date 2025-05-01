@@ -1,3 +1,5 @@
+/* AppHeader.css */
+
 .nav {
   background-color: #39556bdd;
   padding: 0.8rem 1.5rem;
@@ -22,14 +24,18 @@
 
 .logo-image {
   height: 40px;
+  /* <<<<---- ลดขนาดโลโก้ */
   width: 40px;
+  /* <<<<---- ลดขนาดโลโก้ */
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
+  /* <<<<---- ปรับระยะห่างถ้าต้องการ */
 }
 
 .logo-text {
   font-size: 1.3rem;
+  /* <<<<---- อาจจะลดขนาด text เล็กน้อยถ้าโลโก้เล็กลง */
   font-weight: 600;
   white-space: nowrap;
 }
@@ -45,6 +51,7 @@
 .nav-item {
   display: flex;
   align-items: center;
+  /* หรือ baseline ถ้า center ไม่เวิร์ค */
 }
 
 .nav-links {
@@ -115,12 +122,15 @@
 
   .logo-image {
     height: 35px;
+    /* <<<<---- ลดขนาดโลโก้ใน Mobile */
     width: 35px;
+    /* <<<<---- ลดขนาดโลโก้ใน Mobile */
     margin-right: 8px;
   }
 
   .logo-text {
     font-size: 1rem;
+    /* <<<<---- ลดขนาด Text ใน Mobile */
   }
 
   .menu-icon {
@@ -157,13 +167,16 @@
 
   .nav-links {
     display: flex;
+    /* ควรเป็น flex หรือ block ก็ได้ใน mobile */
     width: 100%;
     padding: 0.9rem 1.5rem;
     font-size: 1.1rem;
     line-height: 1.5;
+    text-align: left;
     color: #e0e0e0;
     box-sizing: border-box;
     align-items: center;
+    /* จัดกลางแนวตั้งใน mobile link */
   }
 
   .nav-links:hover {

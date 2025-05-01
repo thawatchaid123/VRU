@@ -1,9 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
 import styles from './CSS/Dashboard.module.css';
-=======
-import styles from './Dashboard.module.css';
->>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
 
 const Dashboard = () => {
     let user = null;

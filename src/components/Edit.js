@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
 import './CSS/Edit.css';
-=======
-import './Edit.css';
->>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
 
 function Edit() {
   const [profilePicture, setProfilePicture] = useState(null);

@@ -2,11 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // นำเข้า useNavigate สำหรับการนำทาง
-<<<<<<< HEAD
 import './CSS/RepairStats.css';
-=======
-import './RepairStats.css';
->>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 // ใช้ Base64 string ใหม่ที่แปลงจากไฟล์ THSarabunNew.ttf

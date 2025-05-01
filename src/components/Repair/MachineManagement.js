@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-<<<<<<< HEAD
-import './CSS/MachineManagement.css';
-=======
-import './MachineManagement.css';
->>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
+import '../CSS/MachineManagement.css';
 
 const API_URL = 'http://localhost/PO/machine_api.php';
 
@@ -18,11 +14,7 @@ const MACHINE_TYPES = [
   { value: 'เครื่องจักรสำหรับงานทดสอบและตรวจสอบ (Testing & Inspection Machines)', label: 'เครื่องจักรสำหรับงานทดสอบและตรวจสอบ (Testing & Inspection Machines)' },
   { value: 'เครื่องจักรสำหรับการแพ็คกิ้งและจัดเรียงชิ้นส่วน (Packaging & Handling Machines)', label: 'เครื่องจักรสำหรับการแพ็คกิ้งและจัดเรียงชิ้นส่วน (Packaging & Handling Machines)' },
   { value: 'เครื่องจักรในสายการผลิตอัตโนมัติ (Automation & Assembly Machines) (Packaging & Handling Machines)', label: 'เครื่องจักรในสายการผลิตอัตโนมัติ (Automation & Assembly Machines))' },
-<<<<<<< HEAD
-
-=======
   
->>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
 
 ];
 
@@ -101,11 +93,7 @@ const MachineManagement = () => {
         setError('กรุณาอัพโหลดไฟล์รูปภาพเท่านั้น');
         return;
       }
-<<<<<<< HEAD
-
-=======
       
->>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
       setFormData(prevState => ({
         ...prevState,
         machineImage: file
@@ -125,11 +113,7 @@ const MachineManagement = () => {
       formDataToSubmit.append('type', formData.machineType);
       formDataToSubmit.append('startDate', `${formData.usageDate} ${formData.usageTime}`);
       formDataToSubmit.append('operationDetails', formData.operationDetails);
-<<<<<<< HEAD
-
-=======
       
->>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
       if (formData.machineImage) {
         formDataToSubmit.append('image', formData.machineImage);
       }
@@ -178,11 +162,7 @@ const MachineManagement = () => {
         <h2 className="page-title">
           แบบฟอร์มจัดการข้อมูลเครื่องจักร
         </h2>
-<<<<<<< HEAD
-
-=======
         
->>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
         {error && (
           <div className="error-message">
             <span>{error}</span>
@@ -191,11 +171,7 @@ const MachineManagement = () => {
             </button>
           </div>
         )}
-<<<<<<< HEAD
-
-=======
         
->>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
         <form onSubmit={handleSubmit} className="space-y-6">
 
           {/* Form fields */}
@@ -313,18 +289,11 @@ const MachineManagement = () => {
             </button>
             <button
               type="submit"
-<<<<<<< HEAD
-              className={`px-6 py-2 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${loading
-                ? 'bg-blue-400 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700'
-                }`}
-=======
               className={`px-6 py-2 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                 loading 
                   ? 'bg-blue-400 cursor-not-allowed' 
                   : 'bg-blue-600 hover:bg-blue-700'
               }`}
->>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
               disabled={loading}
             >
               {loading ? 'กำลังบันทึก...' : 'บันทึกข้อมูล'}
