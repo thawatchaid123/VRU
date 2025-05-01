@@ -2,94 +2,89 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px;
+    padding: 40px 20px;
     background-color: #f0f2f5;
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
+    box-sizing: border-box;
 }
 
 .title {
-    font-size: 28px;
+    font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    color: #333;
+    text-align: center;
 }
 
 .chat-box {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     background: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    text-align: center;
 }
 
-.chat-log {
-    max-height: 250px;
-    overflow-y: auto;
-    margin-bottom: 15px;
-}
-
-.chat-message {
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 8px;
-    max-width: 80%;
-}
-
-.chat-message.bot {
-    background-color: #f1f1f1;
-    text-align: left;
-}
-
-.chat-message.user {
-    background-color: #cce5ff;
-    text-align: right;
-    margin-left: auto;
-}
-
-.input-section {
-    display: flex;
-    margin-bottom: 15px;
-}
-
-.input-section input {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-right: 10px;
-}
-
-.input-section button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
+/* --- ส่วนกลุ่มปุ่มหลัก --- */
 .button-group {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
 }
 
 .button-group button {
-    flex: 1;
-    margin: 0 5px;
-    padding: 12px;
-    font-size: 16px;
+    padding: 20px 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     color: white;
+    width: 100%;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    text-align: center;
 }
 
-.button-group button:first-child {
+/* --- สไตล์ปุ่มแต่ละอัน --- */
+.button-group button:nth-child(1) {
     background-color: #007bff;
 }
 
-.button-group button:last-child {
+.button-group button:nth-child(1):hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.button-group button:nth-child(2) {
     background-color: #28a745;
+}
+
+.button-group button:nth-child(2):hover {
+    background-color: #1e7e34;
+    transform: translateY(-2px);
+}
+
+/* --- Responsive (ถ้าต้องการให้ปุ่มกลับไปเรียงแนวนอนในจอใหญ่) --- */
+@media (min-width: 500px) {
+
+    /* ปรับ breakpoint ตามต้องการ */
+    .button-group {
+        flex-direction: row;
+        /* กลับไปเรียงแนวนอน */
+        gap: 20px;
+        /* เพิ่ม gap แนวนอน */
+    }
+
+    .button-group button {
+        width: auto;
+        /* ให้ความกว้างตามเนื้อหา + padding */
+        flex: 1;
+        /* กลับมาใช้ flex: 1 เพื่อแบ่งพื้นที่ */
+        /* อาจจะต้องปรับ padding แนวนอนใหม่เล็กน้อย */
+        /* padding-left: 30px; */
+        /* padding-right: 30px; */
+    }
 }

@@ -15,13 +15,11 @@ const HomePage = () => {
 
     return (
         <div className="container">
-            <h1 className="title">🌿 ผู้ช่วยแจ้งปัญหา</h1>
-            <div className="chat-box">
+            <h1 className="title">ผู้ช่วยแจ้งปัญหา</h1>
                 <div className="button-group">
                     <button onClick={() => handleSelectOption('repair')}>🛠️ แจ้งซ่อม</button>
                     <button onClick={() => handleSelectOption('environment')}>🌿 ปัญหาสิ่งแวดล้อม</button>
                 </div>
-            </div>
         </div>
     );
 };
