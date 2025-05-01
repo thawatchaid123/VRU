@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import './CSS/Employee.css';
+=======
+import './Employee.css';
+>>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
 import { useNavigate } from "react-router-dom"; // นำเข้า useNavigate
 
 

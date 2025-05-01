@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import styles from './CSS/TechnicianDashboard.module.css';
+=======
+import styles from './TechnicianDashboard.module.css';
+>>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
 import axios from 'axios';
 
 const TechnicianDashboard = () => {

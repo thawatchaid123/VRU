@@ -1,0 +1,131 @@
+.dashboardContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    background-color: #3be3f3;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.welcomeMessage {
+    background-color: white;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.welcomeMessage p {
+    margin: 0;
+    font-size: 18px;
+    color: #2c3e50;
+}
+
+.userInfo {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.userInfo p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #666;
+}
+
+.quickActions {
+    background-color: white;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.quickActions h3 {
+    margin: 0 0 15px 0;
+    color: #2c3e50;
+    font-size: 20px;
+}
+
+.actionButtons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.actionButtons button {
+    padding: 12px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.actionButtons button:hover {
+    background-color: #2980b9;
+}
+
+@media (max-width: 768px) {
+    .dashboardContainer {
+        padding: 10px;
+    }
+
+    .actionButtons {
+        grid-template-columns: 1fr;
+    }
+
+    .header h2 {
+        font-size: 20px;
+    }
+}
+.actionButton {
+    /* คัดลอก styles จากปุ่มเดิม */
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #ffffff;;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.actionButton:hover {
+    background-color :#2980b9;
+}
+.logoutContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.logoutButton {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 400px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.logoutButton:hover {
+    background-color: #c0392b;
+}

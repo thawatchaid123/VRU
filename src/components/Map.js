@@ -2,7 +2,11 @@ import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+<<<<<<< HEAD
 import './CSS/Map.css';
+=======
+import './Map.css';
+>>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
 // กำหนดไอคอนของ Marker
 delete L.Icon.Default.prototype._getIconUrl;
 

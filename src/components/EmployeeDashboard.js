@@ -1,6 +1,10 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import styles from './CSS/EmployeeDashboard.module.css';
+=======
+import styles from './EmployeeDashboard.module.css';
+>>>>>>> 54c1c416158bb4f2a57e3598e350f7d95a651cff
 import { Link } from 'react-router-dom';
 
 const EmployeeDashboard = () => {
