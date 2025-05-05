@@ -1,0 +1,151 @@
+<?php
+$dbHost = 'localhost';
+$dbUser = 'root';
+$dbPass = '';
+$dbName = 'reportss';
+$tableName = 'repair';
+
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+try {
+    $pdo = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8", $dbUser, $dbPass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+} catch (PDOException $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]);
+    exit();
+}
+
+header('Content-Type: application/json');
+
+$method = $_SERVER['REQUEST_METHOD'];
+
+try {
+    switch ($method) {
+        case 'GET':
+            $stmt = $pdo->query("SELECT id, name, location FROM $tableName ORDER BY name ASC");
+            $locations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($locations);
+            break;
+
+        case 'POST':
+            $input = json_decode(file_get_contents('php://input'), true);
+
+            if (empty($input['name'])) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Location name is required']);
+                exit();
+            }
+
+            $name = trim($input['name']);
+            $location = isset($input['location']) ? trim($input['location']) : null;
+
+            $sql = "INSERT INTO $tableName (name, location) VALUES (:name, :location)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+            $stmt->bindParam(':location', $location, PDO::PARAM_STR);
+
+            if ($stmt->execute()) {
+                $lastId = $pdo->lastInsertId();
+                http_response_code(201);
+                echo json_encode(['id' => $lastId, 'name' => $name, 'location' => $location]);
+            } else {
+                http_response_code(500);
+                echo json_encode(['error' => 'Failed to add location']);
+            }
+            break;
+
+        case 'PUT':
+            $input = json_decode(file_get_contents('php://input'), true);
+
+            if (empty($input['id']) || empty($input['name'])) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Location ID and name are required for update']);
+                exit();
+            }
+
+            $id = filter_var($input['id'], FILTER_VALIDATE_INT);
+            $name = trim($input['name']);
+            $location = isset($input['location']) ? trim($input['location']) : null;
+
+            if ($id === false) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Invalid Location ID']);
+                exit();
+            }
+
+            $sql = "UPDATE $tableName SET name = :name, location = :location WHERE id = :id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+            $stmt->bindParam(':location', $location, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+            if ($stmt->execute()) {
+                if ($stmt->rowCount() > 0) {
+                    echo json_encode(['success' => true, 'message' => 'Location updated successfully']);
+                } else {
+                    http_response_code(404);
+                    echo json_encode(['success' => false, 'message' => 'Location not found or no change made']);
+                }
+            } else {
+                http_response_code(500);
+                echo json_encode(['error' => 'Failed to update location']);
+            }
+            break;
+
+        case 'DELETE':
+            if (!isset($_GET['id'])) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Location ID is required for deletion']);
+                exit();
+            }
+
+            $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
+            if ($id === false) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Invalid Location ID']);
+                exit();
+            }
+
+            $sql = "DELETE FROM $tableName WHERE id = :id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+            if ($stmt->execute()) {
+                if ($stmt->rowCount() > 0) {
+                    echo json_encode(['success' => true, 'message' => 'Location deleted successfully']);
+                } else {
+                    http_response_code(404);
+                    echo json_encode(['success' => false, 'message' => 'Location not found']);
+                }
+            } else {
+                http_response_code(500);
+                echo json_encode(['error' => 'Failed to delete location']);
+            }
+            break;
+
+        default:
+            http_response_code(405);
+            echo json_encode(['error' => 'Method not allowed']);
+            break;
+    }
+} catch (PDOException $e) {
+    http_response_code(500);
+    if ($e->getCode() == 23000) {
+        http_response_code(409);
+        echo json_encode(['error' => 'Location name already exists.']);
+    } else {
+        echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
+    }
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'An unexpected error occurred: ' . $e->getMessage()]);
+}

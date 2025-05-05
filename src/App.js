@@ -6,7 +6,6 @@ import AppHeader from "./components/AppHeader";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import ReportForm from './components/ReportForm';
-import ComplaintForm from './components/Repair/ComplaintForm';
 import Result from "./components/Result";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -18,7 +17,12 @@ import ChartPage from './components/ChartPage';
 import RepairStats from './components/RepairStats';
 import Admin from "./components/Admin";
 import Edit from "./components/Edit";
-import MachineManagement from "./components/Repair/MachineManagement";
+// import MachineManagement from "./components/Repair/MachineManagement";
+import RepairInfoManagement from "./components/Repair/RepairInfoManagement";
+import EnvironmentalInfoManagement from "./components/Environment/EnvironmentalInfoManagement";
+import Repair from "./components/Repair/Repair";
+import Update from "./components/Repair/Update";
+import Check from "./components/Repair/Check";
 
 const PrivateRoute = ({ children, allowedRoles }) => {
   const location = useLocation();
@@ -51,7 +55,7 @@ const PrivateRoute = ({ children, allowedRoles }) => {
     switch (user.user_type) {
       case 'employee': return <Navigate to="/employee-dashboard" replace />;
       case 'technician': return <Navigate to="/technician-dashboard" replace />;
-      case 'admin': return <Navigate to="/app" replace />;
+      case 'admin': return <Navigate to="/dashboard" replace />;
       default: return <Navigate to="/login" replace />;
     }
   }
@@ -86,7 +90,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/report" element={<ReportForm onSubmit={handleReportSubmit} />} />
-            <Route path="/complaintform" element={<ComplaintForm searchResults={searchResults} />} />
+            <Route path="/check" element={<Check searchResults={searchResults} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
 
@@ -98,18 +102,25 @@ function App() {
             <Route path="/employee-dashboard" element={<PrivateRoute allowedRoles={['employee']}><EmployeeDashboard /></PrivateRoute>} />
 
             {/* Technician / Admin */}
-            <Route path="/technician-dashboard" element={<PrivateRoute allowedRoles={['technician', 'admin']}><TechnicianDashboard /></PrivateRoute>} />
-            <Route path="/machine-management" element={<PrivateRoute allowedRoles={['admin', 'technician']}><MachineManagement /></PrivateRoute>} />
+            {/* <Route path="/technician-dashboard" element={<PrivateRoute allowedRoles={['technician', 'admin']}><TechnicianDashboard /></PrivateRoute>} /> */}
+            {/* <Route path="/machine-management" element={<PrivateRoute allowedRoles={['admin', 'technician']}><MachineManagement /></PrivateRoute>} /> */}
             <Route path="/repair-stats" element={<PrivateRoute allowedRoles={['admin', 'technician']}><RepairStats /></PrivateRoute>} />
 
             {/* Admin */}
-            <Route path="/app" element={<PrivateRoute allowedRoles={['admin']}><Dashboard /></PrivateRoute>} />
-            <Route path="/admin" element={<PrivateRoute allowedRoles={['admin']}><Admin /></PrivateRoute>} />
+            <Route path="/dashboard" element={<PrivateRoute allowedRoles={['admin']}><Dashboard /></PrivateRoute>} />
+            {/* <Route path="/admin" element={<PrivateRoute allowedRoles={['admin']}><Admin /></PrivateRoute>} /> */}
             <Route path="/edit" element={<PrivateRoute allowedRoles={['admin']}><Edit /></PrivateRoute>} />
+            
+            <Route path="/add-repair" element={<RepairInfoManagement /> }/>
+            <Route path="/repair" element={<Repair /> }/>
+            <Route path="/update-status" element={<Update /> }/>
+
+            <Route path="/add-environmental" element={<EnvironmentalInfoManagement /> }/>
+  
           </Routes>
         </div>
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

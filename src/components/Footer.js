@@ -9,16 +9,12 @@ const Footer = () => {
           <div className="col-12">
             <div className="copyright-section">
               <img src="/images/T3.png" alt="Copyright Icon" />
-              <p className="copyright-text">เเจ้งซ่อม| สงวนลิขสิทธิ์</p>
+              <p className="copyright-text">ระบบแจ้งปัญหา | สงวนลิขสิทธิ์</p>
             </div>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-12 text-center p-4">
-            <p>ธวัชชัย ฮวบขุนทด</p>
-          </div>
-        </div>
+        
       </div>
     </div>
   );

@@ -1,0 +1,188 @@
+.dashboardContainer {
+  padding: 20px 30px;
+  max-width: 900px;
+  margin: 2rem auto;
+  background-color: #f4f7f6;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+.welcomeMessage {
+  background-color: #ffffff;
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.welcomeMessage p:first-child {
+  font-size: 1.3rem;
+  color: #34495e;
+  margin: 0 0 1rem 0;
+}
+
+.username {
+  color: #2980b9;
+  font-weight: 600;
+}
+
+.userInfo {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #ccc;
+  text-align: left;
+  display: inline-block;
+  text-align: center;
+}
+
+.userInfo p {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.userInfo p strong {
+  color: #333;
+  margin-right: 8px;
+}
+
+.buttonContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.navButton {
+  background-color: #3498db;
+  color: white;
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'kanit';
+  text-align: center;
+}
+
+.navButton:hover {
+  background-color: #2980b9;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navButton:active {
+  transform: translateY(0);
+  background-color: #2471a3;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Medium Screens & Tablets (e.g., iPad Portrait/Landscape) - Adjust grid slightly if needed */
+@media (max-width: 992px) {
+  .dashboardContainer {
+    max-width: 800px;
+    padding: 20px 25px;
+  }
+
+  .buttonContainer {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .header h2 {
+    font-size: 1.7rem;
+  }
+
+  .welcomeMessage p:first-child {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardContainer {
+    max-width: 95%;
+    padding: 20px 20px;
+    margin: 1.5rem auto;
+  }
+
+  .header h2 {
+    font-size: 1.6rem;
+  }
+
+  .welcomeMessage {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .welcomeMessage p:first-child {
+    font-size: 1.15rem;
+  }
+
+  .userInfo p {
+    font-size: 0.95rem;
+  }
+
+  .buttonContainer {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.9rem;
+  }
+
+  .navButton {
+    padding: 0.8rem 0.9rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboardContainer {
+    padding: 15px 15px;
+    margin: 1rem auto;
+    border-radius: 8px;
+  }
+
+  .header {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+  }
+
+  .header h2 {
+    font-size: 1.4rem;
+  }
+
+  .welcomeMessage {
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .welcomeMessage p:first-child {
+    font-size: 1.1rem;
+  }
+
+  .userInfo {
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+  }
+
+  .userInfo p {
+    font-size: 0.9rem;
+  }
+
+  .buttonContainer {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .navButton {
+    padding: 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .navButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  }
+}

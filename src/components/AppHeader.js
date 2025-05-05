@@ -56,7 +56,7 @@ function AppHeader() {
             </span>
           </li>
           <li className="nav-item">
-            <Link to="/complaintform" className="nav-links" onClick={handleLinkClick}>ตรวจสอบ</Link>
+            <Link to="/check" className="nav-links" onClick={handleLinkClick}>ตรวจสอบ</Link>
           </li>
           <li className="nav-item">
             <button onClick={handleLogout} className="nav-links logout">
@@ -72,7 +72,7 @@ function AppHeader() {
             <Link to="/" className="nav-links" onClick={handleLinkClick}>หน้าหลัก</Link>
           </li>
           <li className="nav-item">
-            <Link to="/complaintform" className="nav-links" onClick={handleLinkClick}>ตรวจสอบ</Link>
+            <Link to="/check" className="nav-links" onClick={handleLinkClick}>ตรวจสอบ</Link>
           </li>
           <li className="nav-item">
             <Link to="/login" className="nav-links" onClick={handleLinkClick}>

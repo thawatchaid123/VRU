@@ -61,7 +61,7 @@ const Login = () => {
                         navigate('/technician-dashboard');
                         break;
                     case 'admin':
-                        navigate('/app');
+                        navigate('/dashboard');
                         break;
                     default:
                         throw new Error('Invalid user type');

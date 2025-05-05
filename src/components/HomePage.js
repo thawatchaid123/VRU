@@ -7,7 +7,7 @@ const HomePage = () => {
 
     const handleSelectOption = (type) => {
         if (type === 'repair') {
-            navigate('/report');
+            navigate('/repair');
         } else {
             navigate('/environment');
         }

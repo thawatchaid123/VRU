@@ -1,0 +1,117 @@
+.repairGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 0;
+    justify-content: center;
+}
+
+.repairCard {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 250px;
+    flex: 0 0 auto;
+}
+
+.repairCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.repairCard p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #2d3748;
+    text-align: left;
+}
+
+.repairCard strong {
+    color: #4a5568;
+}
+
+.inlineErrorText {
+    color: #e53e3e;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+.successText {
+    color: #38a169;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+
+/* มือถือ (< 768px) */
+@media (max-width: 767px) {
+    .managementContainer {
+        padding: 16px;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    .repairCard {
+        width: calc(100% - 40px);
+        padding: 15px;
+    }
+
+    .repairGrid {
+        padding: 15px;
+        gap: 15px;
+    }
+}
+
+/* iPad และแท็บเล็ต (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .managementContainer {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    .repairCard {
+        width: calc(50% - 30px);
+    }
+
+    .repairGrid {
+        justify-content: center;
+    }
+}
+
+/* เดสก์ท็อป (> 1024px) */
+@media (min-width: 1025px) {
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+
+    .repairCard {
+        width: 250px;
+    }
+
+    .repairGrid {
+        justify-content: center;
+    }
+}

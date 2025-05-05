@@ -1,0 +1,506 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap');
+
+.managementContainer {
+    width: 100%;
+    margin: 30px auto;
+    padding: 25px 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    font-family: 'Noto Sans Thai', 'Arial', sans-serif;
+}
+
+.managementContainer h2 {
+    font-size: 2.2rem;
+    color: #343a40;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.dataTableSection {
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    margin-top: 20px;
+}
+
+.dataTableSection h3 {
+    font-size: 1.6rem;
+    color: #495057;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 10px;
+}
+
+.dataTableSection p {
+    font-size: 1rem;
+    color: #6c757d;
+    text-align: center;
+    padding: 40px 15px;
+    font-style: italic;
+}
+
+.errorText {
+    color: #dc3545 !important;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.tableWrapper {
+    overflow-x: auto;
+    margin-top: 15px;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: inset 5px 0 5px -5px rgba(0, 0, 0, 0.2), inset -5px 0 5px -5px rgba(0, 0, 0, 0.2);
+}
+
+.tableWrapper::-webkit-scrollbar {
+    height: 6px;
+    background-color: #f1f1f1;
+}
+
+.tableWrapper::-webkit-scrollbar-track {
+    border-radius: 4px;
+}
+
+.tableWrapper::-webkit-scrollbar-thumb {
+    background-color: #ced4da;
+    border-radius: 4px;
+    border: 2px solid #f1f1f1;
+}
+
+.tableWrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #adb5bd;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    min-width: 300px;
+    border-spacing: 0;
+}
+
+.dataTable th,
+.dataTable td {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.dataTable th {
+    background-color: #4a90e2;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.dataTable th:nth-child(1), .dataTable td[data-label="ชื่อ"] {
+    min-width: 60px;
+    max-width: 80px;
+    white-space: normal;
+    word-break: break-all;
+}
+
+.dataTable th:nth-child(2), .dataTable td[data-label="นามสกุล"] {
+    min-width: 60px;
+    max-width: 80px;
+    white-space: normal;
+    word-break: break-all;
+}
+
+.dataTable th:nth-child(3), .dataTable td[data-label="เบอร์โทร"] {
+    min-width: 70px;
+    max-width: 80px;
+    white-space: normal;
+    word-break: break-all;
+}
+
+.dataTable th:nth-child(4), .dataTable td[data-label="สิ่งชำรุด"] {
+    min-width: 70px;
+    max-width: 80px;
+    white-space: normal;
+    word-break: break-all;
+}
+
+.dataTable th:nth-child(5), .dataTable td[data-label="สถานที่"] {
+    min-width: 70px;
+    max-width: 80px;
+    white-space: normal;
+    word-break: break-all;
+}
+
+.dataTable th:nth-child(6), .dataTable td[data-label="รายละเอียด"] {
+    min-width: 90px;
+    max-width: 100px;
+    white-space: normal;
+    word-break: break-all;
+}
+
+.dataTable th:nth-child(7), .dataTable td[data-label="รูปภาพ"] {
+    min-width: 70px;
+    max-width: 80px;
+    text-align: center;
+}
+
+.dataTable th:nth-child(8), .dataTable td[data-label="สถานะ"] {
+    min-width: 100px;
+    max-width: 120px;
+}
+
+.dataTable tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.dataTable tbody tr:hover {
+    background-color: #e9ecef;
+    cursor: default;
+}
+
+.repairImage {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.imagePlaceholder {
+    display: inline-block;
+    padding: 5px;
+    color: #6c757d;
+    font-size: 0.75em;
+    font-style: italic;
+}
+
+.statusControl {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.statusSelect {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    cursor: pointer;
+    min-width: 120px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 8px 8px;
+    padding-right: 25px;
+}
+
+.statusSelect:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.statusSelect:disabled {
+    background-color: #e9ecef;
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.statusUpdatingText {
+    margin-left: 8px;
+    font-size: 0.75em;
+    color: #007bff;
+    font-style: italic;
+    vertical-align: middle;
+}
+
+.statusSelect option[value=""] {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.imageModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.imageModalContent {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imageModalImage {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    user-select: none;
+    cursor: move; /* สำหรับเดสก์ท็อป */
+}
+
+/* Responsive Adjustments for Tablets (≤1024px) */
+@media (max-width: 1024px) {
+    .managementContainer {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .managementContainer h2 {
+        font-size: 2rem;
+    }
+
+    .dataTableSection {
+        padding: 20px;
+    }
+
+    .dataTableSection h3 {
+        font-size: 1.4rem;
+    }
+
+    .dataTable th,
+    .dataTable td {
+        padding: 10px 8px;
+    }
+
+    .dataTable {
+        font-size: 0.9rem;
+        min-width: 300px;
+    }
+
+    .repairImage {
+        width: 70px;
+        height: 70px;
+    }
+
+    .dataTable td[data-label="รูปภาพ"] {
+        width: 90px;
+    }
+
+    .statusSelect {
+        min-width: 110px;
+        padding: 6px 8px;
+        padding-right: 23px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Responsive Adjustments for Mobile (≤767px) */
+@media (max-width: 767px) {
+    .managementContainer {
+        padding: 15px;
+        margin: 15px auto;
+        border-radius: 8px;
+    }
+
+    .managementContainer h2 {
+        font-size: 1.7rem;
+        margin-bottom: 20px;
+    }
+
+    .dataTableSection {
+        padding: 15px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .dataTableSection h3 {
+        font-size: 1.25rem;
+        margin-bottom: 20px;
+    }
+
+    .tableWrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+
+    .tableWrapper::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .dataTable {
+        font-size: 0.85rem;
+        min-width: 300px;
+    }
+
+    .dataTable th,
+    .dataTable td {
+        padding: 8px 6px;
+        font-size: 0.8rem;
+    }
+
+    .dataTable th:nth-child(1), .dataTable td[data-label="ชื่อ"] {
+        min-width: 50px;
+        max-width: 70px;
+        word-break: break-all;
+    }
+
+    .dataTable th:nth-child(2), .dataTable td[data-label="นามสกุล"] {
+        min-width: 50px;
+        max-width: 70px;
+        word-break: break-all;
+    }
+
+    .dataTable th:nth-child(3), .dataTable td[data-label="เบอร์โทร"] {
+        min-width: 60px;
+        max-width: 70px;
+        word-break: break-all;
+    }
+
+    .dataTable th:nth-child(4), .dataTable td[data-label="สิ่งชำรุด"] {
+        min-width: 60px;
+        max-width: 70px;
+        word-break: break-all;
+    }
+
+    .dataTable th:nth-child(5), .dataTable td[data-label="สถานที่"] {
+        min-width: 60px;
+        max-width: 70px;
+        word-break: break-all;
+    }
+
+    .dataTable th:nth-child(6), .dataTable td[data-label="รายละเอียด"] {
+        min-width: 80px;
+        max-width: 90px;
+        word-break: break-all;
+    }
+
+    .dataTable th:nth-child(7), .dataTable td[data-label="รูปภาพ"] {
+        min-width: 60px;
+        max-width: 70px;
+        word-break: break-all;
+    }
+
+    .dataTable th:nth-child(8), .dataTable td[data-label="สถานะ"] {
+        min-width: 90px;
+        max-width: 110px;
+        word-break: break-all;
+    }
+
+    .repairImage {
+        width: 60px;
+        height: 60px;
+    }
+
+    .dataTable td[data-label="รูปภาพ"] {
+        width: 70px;
+    }
+
+    .statusSelect {
+        min-width: 90px;
+        padding: 5px 6px;
+        padding-right: 20px;
+        font-size: 0.75rem;
+    }
+
+    .statusUpdatingText {
+        font-size: 0.7em;
+        margin-left: 5px;
+    }
+
+    .imageModalImage {
+        cursor: default; /* ปิด cursor move บนมือถือ */
+    }
+}
+
+/* Responsive Adjustments for Smallest Mobile (≤320px) */
+@media (max-width: 320px) {
+    .dataTable th,
+    .dataTable td {
+        padding: 6px 4px;
+        font-size: 0.7rem;
+    }
+
+    .dataTable th:nth-child(1), .dataTable td[data-label="ชื่อ"] {
+        min-width: 45px;
+        max-width: 60px;
+    }
+
+    .dataTable th:nth-child(2), .dataTable td[data-label="นามสกุล"] {
+        min-width: 45px;
+        max-width: 60px;
+    }
+
+    .dataTable th:nth-child(3), .dataTable td[data-label="เบอร์โทร"] {
+        min-width: 50px;
+        max-width: 60px;
+    }
+
+    .dataTable th:nth-child(4), .dataTable td[data-label="สิ่งชำรุด"] {
+        min-width: 50px;
+        max-width: 60px;
+    }
+
+    .dataTable th:nth-child(5), .dataTable td[data-label="สถานที่"] {
+        min-width: 50px;
+        max-width: 60px;
+    }
+
+    .dataTable th:nth-child(6), .dataTable td[data-label="รายละเอียด"] {
+        min-width: 70px;
+        max-width: 80px;
+    }
+
+    .dataTable th:nth-child(7), .dataTable td[data-label="รูปภาพ"] {
+        min-width: 50px;
+        max-width: 60px;
+    }
+
+    .dataTable th:nth-child(8), .dataTable td[data-label="สถานะ"] {
+        min-width: 80px;
+        max-width: 100px;
+    }
+
+    .repairImage {
+        width: 50px;
+        height: 50px;
+    }
+
+    .dataTable td[data-label="รูปภาพ"] {
+        width: 60px;
+    }
+
+    .statusSelect {
+        min-width: 80px;
+        padding: 4px 5px;
+        padding-right: 18px;
+        font-size: 0.65rem;
+    }
+
+    .imageModalClose {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,403 @@
+/* นำเข้าฟอนต์ภาษาไทย */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap');
+
+/* รีเซ็ตและกำหนดสไตล์พื้นฐาน */
+.managementContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    font-family: 'Noto Sans Thai', 'Arial', sans-serif;
+    background-color: #f5f8fb;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: visible;
+}
+
+/* หัวข้อหลัก */
+h2 {
+    font-size: 2rem;
+    color: #2d3748;
+    margin-bottom: 24px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* หัวข้อย่อย */
+h3 {
+    font-size: 1.5rem;
+    color: #4a5568;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ฟอร์ม */
+.crudForm {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px;
+    min-height: 200px;
+    overflow: visible;
+}
+
+/* กลุ่มฟอร์ม */
+.formGroup {
+    margin-bottom: 24px;
+    display: block;
+    min-height: 80px;
+}
+
+/* Label */
+.formGroup label {
+    display: block;
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-bottom: 12px;
+    font-weight: 500;
+    visibility: visible;
+}
+
+/* Input */
+.formGroup input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    visibility: visible;
+}
+
+.formGroup input:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 6px rgba(49, 130, 206, 0.3);
+}
+
+.formGroup input:focus-visible {
+    outline: 2px solid #3182ce;
+    outline-offset: 2px;
+}
+
+.formGroup input:disabled {
+    background-color: #edf2f7;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* เครื่องหมาย * */
+.formGroup .required {
+    color: #e53e3e !important; /* สีแดงสำหรับเครื่องหมาย * */
+    font-weight: bold;
+}
+
+/* ข้อความข้อผิดพลาด */
+.errorText {
+    color: #e53e3e;
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ปุ่มในฟอร์ม */
+.formActions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.submitButton,
+.cancelButton {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.submitButton {
+    background-color: #38a169; /* เขียวตามภาพ */
+    color: #ffffff;
+}
+
+.submitButton:hover:not(:disabled) {
+    background-color: #2f855a;
+    transform: translateY(-1px);
+}
+
+.cancelButton {
+    background-color: #718096;
+    color: #ffffff;
+}
+
+.cancelButton:hover:not(:disabled) {
+    background-color: #5a6779;
+    transform: translateY(-1px);
+}
+
+.submitButton:disabled,
+.cancelButton:disabled {
+    background-color: #e2e8f0;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.submitButton:focus-visible,
+.cancelButton:focus-visible {
+    outline: 2px solid #3182ce;
+    outline-offset: 2px;
+}
+
+/* ส่วนตาราง */
+.dataTableSection {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tableWrapper {
+    overflow-x: auto;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+/* หัวตารางและเนื้อหา */
+.dataTable th,
+.dataTable td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.dataTable th {
+    background-color: #3182ce;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.dataTable tr:nth-child(even) {
+    background-color: #f7fafc;
+}
+
+.dataTable tr:hover {
+    background-color: #edf2f7;
+}
+
+/* ปุ่มในตาราง */
+.editButton,
+.deleteButton {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.editButton {
+    background-color: #38a169; /* เขียวสำหรับปุ่มแก้ไข */
+    color: #ffffff;
+}
+
+.editButton:hover:not(:disabled) {
+    background-color: #2f855a;
+    transform: translateY(-1px);
+}
+
+.deleteButton {
+    background-color: #e53e3e; /* แดงสำหรับปุ่มลบ */
+    color: #ffffff;
+}
+
+.deleteButton:hover:not(:disabled) {
+    background-color: #c53030;
+    transform: translateY(-1px);
+}
+
+.editButton:disabled,
+.deleteButton:disabled {
+    background-color: #e2e8f0;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.editButton:focus-visible,
+.deleteButton:focus-visible {
+    outline: 2px solid #3182ce;
+    outline-offset: 2px;
+}
+
+/* ข้อความโหลดและไม่มีข้อมูล */
+p {
+    font-size: 1rem;
+    color: #4a5568;
+    text-align: center;
+    margin: 16px 0;
+}
+
+/* Responsive Design */
+
+/* มือถือ (< 768px) */
+@media (max-width: 767px) {
+    .managementContainer {
+        padding: 16px;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    .crudForm {
+        padding: 16px;
+    }
+
+    .formGroup label {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+    }
+
+    .formGroup input {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+
+    .formActions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .submitButton,
+    .cancelButton {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    .dataTable {
+        font-size: 0.9rem;
+    }
+
+    .dataTable th,
+    .dataTable td {
+        padding: 12px;
+    }
+
+    .editButton,
+    .deleteButton {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+}
+
+/* iPad และแท็บเล็ต (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .managementContainer {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    .crudForm {
+        padding: 20px;
+    }
+
+    .formGroup label {
+        font-size: 1rem;
+    }
+
+    .formGroup input {
+        font-size: 1rem;
+        padding: 11px;
+    }
+
+    .submitButton,
+    .cancelButton {
+        padding: 11px 20px;
+        font-size: 1rem;
+    }
+
+    .dataTable {
+        font-size: 0.95rem;
+    }
+
+    .editButton,
+    .deleteButton {
+        padding: 7px 14px;
+        font-size: 0.95rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
+/* เดสก์ท็อป (> 1024px) */
+@media (min-width: 1025px) {
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+
+    .crudForm {
+        padding: 28px;
+    }
+
+    .formGroup label {
+        font-size: 1.1rem;
+        margin-bottom: 14px;
+    }
+
+    .formGroup input {
+        font-size: 1.1rem;
+        padding: 14px;
+    }
+
+    .submitButton,
+    .cancelButton {
+        padding: 14px 28px;
+        font-size: 1.1rem;
+    }
+
+    .dataTable {
+        font-size: 1.1rem;
+    }
+
+    .editButton,
+    .deleteButton {
+        padding: 10px 18px;
+        font-size: 1rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+}
