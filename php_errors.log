@@ -1,0 +1,30 @@
+[10-May-2025 06:50:11 Europe/Berlin] Login request data: {"username":"abc@gmail.com","password":"abc12345"}
+[10-May-2025 06:50:11 Europe/Berlin] User found: Array
+(
+    [id] => 16
+    [email] => abc@gmail.com
+    [first_name] => พุทธา 
+    [last_name] => วิริยกุล
+    [user_type] => admin
+    [employee_id] => C12345
+    [national_id] => 1149900607910
+    [phone_number] => 0653379155
+    [password] => abc12345
+)
+
+[10-May-2025 06:50:11 Europe/Berlin] Login failed: Incorrect password for email: abc@gmail.com
+[10-May-2025 06:50:26 Europe/Berlin] Login request data: {"username":"abc@gmail.com","password":"abc12345"}
+[10-May-2025 06:50:26 Europe/Berlin] User found: Array
+(
+    [id] => 16
+    [email] => abc@gmail.com
+    [first_name] => พุทธา 
+    [last_name] => วิริยกุล
+    [user_type] => admin
+    [employee_id] => C12345
+    [national_id] => 1149900607910
+    [phone_number] => 0653379155
+    [password] => abc12345
+)
+
+[10-May-2025 06:50:26 Europe/Berlin] Login failed: Incorrect password for email: abc@gmail.com

@@ -1,85 +1,71 @@
-/* นำเข้าฟอนต์ภาษาไทย */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&display=swap');
-
-/* รีเซ็ตและกำหนดสไตล์พื้นฐาน */
 .managementContainer {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 24px;
-    font-family: 'Noto Sans Thai', 'Arial', sans-serif;
+    margin: 20px auto;
+    padding: var(--padding);
+    font-family: 'kanit';
     background-color: #f5f8fb;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    overflow: visible;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
 }
 
-/* หัวข้อหลัก */
+button, input{
+    font-family: 'kanit';
+}
+
 h2 {
     font-size: 2rem;
-    color: #2d3748;
-    margin-bottom: 24px;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
     text-align: center;
     font-weight: 600;
 }
 
-/* หัวข้อย่อย */
 h3 {
     font-size: 1.5rem;
-    color: #4a5568;
-    margin-bottom: 20px;
+    color: var(--text-light);
+    margin-bottom: 1rem;
     text-align: center;
     font-weight: 500;
 }
 
-/* ฟอร์ม */
 .crudForm {
-    background-color: #ffffff;
-    padding: 24px;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 32px;
-    min-height: 200px;
-    overflow: visible;
+    background-color: var(--background-card);
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
 }
 
-/* กลุ่มฟอร์ม */
 .formGroup {
-    margin-bottom: 24px;
-    display: block;
-    min-height: 80px;
+    margin-bottom: 1.5rem;
+    padding-top: 10px;
 }
 
-/* Label */
 .formGroup label {
     display: block;
     font-size: 1.1rem;
-    color: #4a5568;
-    margin-bottom: 12px;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
     font-weight: 500;
-    visibility: visible;
+    padding-top: 10px;
+
 }
 
-/* Input */
 .formGroup input {
     display: block;
     width: 100%;
-    padding: 12px;
-    font-size: 1rem;
+    padding: 0.75rem;
+    font-size: var(--font-size-base);
     border: 1px solid #e2e8f0;
     border-radius: 6px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    visibility: visible;
+    box-sizing: border-box;
 }
 
 .formGroup input:focus {
     outline: none;
-    border-color: #3182ce;
-    box-shadow: 0 0 6px rgba(49, 130, 206, 0.3);
-}
-
-.formGroup input:focus-visible {
-    outline: 2px solid #3182ce;
-    outline-offset: 2px;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 6px rgba(0, 200, 81, 0.3);
 }
 
 .formGroup input:disabled {
@@ -88,33 +74,30 @@ h3 {
     opacity: 0.7;
 }
 
-/* เครื่องหมาย * */
 .formGroup .required {
-    color: #e53e3e !important; /* สีแดงสำหรับเครื่องหมาย * */
+    color: var(--secondary-color) !important;
     font-weight: bold;
 }
 
-/* ข้อความข้อผิดพลาด */
 .errorText {
-    color: #e53e3e;
+    color: var(--secondary-color);
     font-size: 0.95rem;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
     text-align: center;
     font-weight: 500;
 }
 
-/* ปุ่มในฟอร์ม */
 .formActions {
     display: flex;
-    gap: 12px;
+    gap: 0.75rem;
     justify-content: center;
-    margin-top: 24px;
+    margin-top: 1.5rem;
 }
 
 .submitButton,
 .cancelButton {
-    padding: 12px 24px;
-    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    font-size: var(--font-size-base);
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -122,12 +105,12 @@ h3 {
 }
 
 .submitButton {
-    background-color: #38a169; /* เขียวตามภาพ */
+    background-color: var(--primary-color);
     color: #ffffff;
 }
 
 .submitButton:hover:not(:disabled) {
-    background-color: #2f855a;
+    background-color: #00a139;
     transform: translateY(-1px);
 }
 
@@ -148,18 +131,11 @@ h3 {
     opacity: 0.6;
 }
 
-.submitButton:focus-visible,
-.cancelButton:focus-visible {
-    outline: 2px solid #3182ce;
-    outline-offset: 2px;
-}
-
-/* ส่วนตาราง */
 .dataTableSection {
-    background-color: #ffffff;
-    padding: 24px;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--background-card);
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
 }
 
 .tableWrapper {
@@ -169,60 +145,98 @@ h3 {
 .dataTable {
     width: 100%;
     border-collapse: collapse;
-    font-size: 1rem;
+    border-spacing: 0;
+    font-size: var(--font-size-base);
+    font-family: 'Noto Sans Thai', sans-serif;
+    table-layout: fixed;
 }
 
-/* หัวตารางและเนื้อหา */
 .dataTable th,
 .dataTable td {
-    padding: 14px;
+    padding: 0.75rem;
     text-align: left;
     border-bottom: 1px solid #e2e8f0;
+    line-height: 1.3;
+    box-sizing: border-box;
+}
+
+.dataTable th:nth-child(1) {
+    width: 35%;
+    white-space: nowrap;
+}
+
+.dataTable th:nth-child(2) {
+    width: 35%;
+    white-space: nowrap;
+}
+
+.dataTable th:nth-child(3) {
+    width: 30%;
+    min-width: 230px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.dataTable td:nth-child(1),
+.dataTable td:nth-child(2) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dataTable td:nth-child(3) {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .dataTable th {
-    background-color: #3182ce;
+    background-color: var(--primary-color);
     color: #ffffff;
     font-weight: 600;
 }
 
-.dataTable tr:nth-child(even) {
+.dataTable tr:nth-child(even) td {
     background-color: #f7fafc;
 }
 
-.dataTable tr:hover {
+.dataTable tr:hover td {
     background-color: #edf2f7;
 }
 
-/* ปุ่มในตาราง */
 .editButton,
 .deleteButton {
-    padding: 8px 16px;
+    padding: 0.5rem 1rem;
     font-size: 0.95rem;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    margin-right: 8px;
     transition: background-color 0.3s ease, transform 0.1s ease;
+    flex-shrink: 0;
+    white-space: nowrap;
+    justify-content: center;
+    display: flex;
+    width: 50%;
 }
 
 .editButton {
-    background-color: #38a169; /* เขียวสำหรับปุ่มแก้ไข */
+    background-color: var(--primary-color);
     color: #ffffff;
 }
 
 .editButton:hover:not(:disabled) {
-    background-color: #2f855a;
+    background-color: #00a139;
     transform: translateY(-1px);
 }
 
 .deleteButton {
-    background-color: #e53e3e; /* แดงสำหรับปุ่มลบ */
+    background-color: var(--secondary-color);
     color: #ffffff;
 }
 
 .deleteButton:hover:not(:disabled) {
-    background-color: #c53030;
+    background-color: #cc0000;
     transform: translateY(-1px);
 }
 
@@ -233,59 +247,50 @@ h3 {
     opacity: 0.6;
 }
 
-.editButton:focus-visible,
-.deleteButton:focus-visible {
-    outline: 2px solid #3182ce;
-    outline-offset: 2px;
-}
-
-/* ข้อความโหลดและไม่มีข้อมูล */
 p {
-    font-size: 1rem;
-    color: #4a5568;
+    font-size: var(--font-size-base);
+    color: var(--text-light);
     text-align: center;
-    margin: 16px 0;
+    margin: 1rem 0;
 }
 
-/* Responsive Design */
-
-/* มือถือ (< 768px) */
 @media (max-width: 767px) {
     .managementContainer {
-        padding: 16px;
+        padding: 12px;
+        margin: 10px auto;
     }
 
     h2 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
     h3 {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
     }
 
     .crudForm {
-        padding: 16px;
+        padding: 12px;
     }
 
     .formGroup label {
         font-size: 0.95rem;
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem;
     }
 
     .formGroup input {
         font-size: 0.95rem;
-        padding: 10px;
+        padding: 0.625rem;
     }
 
     .formActions {
         flex-direction: column;
-        gap: 10px;
+        gap: 0.625rem;
     }
 
     .submitButton,
     .cancelButton {
         width: 100%;
-        padding: 12px;
+        padding: 0.75rem;
         font-size: 0.95rem;
     }
 
@@ -295,109 +300,86 @@ p {
 
     .dataTable th,
     .dataTable td {
-        padding: 12px;
+        padding: 0.6rem;
+    }
+
+    .dataTable th:nth-child(1),
+    .dataTable th:nth-child(2) {
+        min-width: 100px;
+    }
+
+    .dataTable th:nth-child(3) {
+        min-width: 180px;
     }
 
     .editButton,
     .deleteButton {
-        padding: 6px 12px;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .dataTable td:nth-child(3) {
+        gap: 0.4rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .managementContainer {
+        padding: 16px;
+        margin: 15px auto;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.35rem;
+    }
+
+    .crudForm {
+        padding: 16px;
+    }
+
+    .formGroup label {
+        font-size: 1rem;
+    }
+
+    .formGroup input {
+        font-size: 1rem;
+        padding: 0.6875rem;
+    }
+
+    .submitButton,
+    .cancelButton {
+        padding: 0.6875rem 1.25rem;
+        font-size: 1rem;
+    }
+
+    .dataTable {
+        font-size: 0.95rem;
+    }
+
+    .dataTable th,
+    .dataTable td {
+        padding: 0.7rem;
+    }
+
+    .dataTable th:nth-child(3) {
+        min-width: 210px;
+    }
+
+    .editButton,
+    .deleteButton {
+        padding: 0.45rem 0.9rem;
         font-size: 0.9rem;
     }
 
     p {
-        font-size: 0.95rem;
-    }
-}
-
-/* iPad และแท็บเล็ต (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .managementContainer {
-        padding: 20px;
-    }
-
-    h2 {
-        font-size: 1.8rem;
-    }
-
-    h3 {
-        font-size: 1.4rem;
-    }
-
-    .crudForm {
-        padding: 20px;
-    }
-
-    .formGroup label {
         font-size: 1rem;
-    }
-
-    .formGroup input {
-        font-size: 1rem;
-        padding: 11px;
-    }
-
-    .submitButton,
-    .cancelButton {
-        padding: 11px 20px;
-        font-size: 1rem;
-    }
-
-    .dataTable {
-        font-size: 0.95rem;
-    }
-
-    .editButton,
-    .deleteButton {
-        padding: 7px 14px;
-        font-size: 0.95rem;
-    }
-
-    p {
-        font-size: 1rem;
-    }
-}
-
-/* เดสก์ท็อป (> 1024px) */
-@media (min-width: 1025px) {
-    h2 {
-        font-size: 2.2rem;
-    }
-
-    h3 {
-        font-size: 1.6rem;
-    }
-
-    .crudForm {
-        padding: 28px;
-    }
-
-    .formGroup label {
-        font-size: 1.1rem;
-        margin-bottom: 14px;
-    }
-
-    .formGroup input {
-        font-size: 1.1rem;
-        padding: 14px;
-    }
-
-    .submitButton,
-    .cancelButton {
-        padding: 14px 28px;
-        font-size: 1.1rem;
-    }
-
-    .dataTable {
-        font-size: 1.1rem;
-    }
-
-    .editButton,
-    .deleteButton {
-        padding: 10px 18px;
-        font-size: 1rem;
-    }
-
-    p {
-        font-size: 1.1rem;
     }
 }

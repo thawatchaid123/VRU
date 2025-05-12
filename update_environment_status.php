@@ -1,5 +1,5 @@
 <?php
-// File: /VRU-main/update_repair_status.php
+// File: /VRU-main/update_environment_status.php
 
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'reportss');
@@ -66,13 +66,13 @@ try {
     $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
 } catch (PDOException $e) {
     http_response_code(500);
-    error_log("Database Connection Error (Update Status): " . $e->getMessage());
+    error_log("Database Connection Error (Update Environment Status): " . $e->getMessage());
     echo json_encode(["success" => false, "message" => "Database connection failed."]);
     exit();
 }
 
 // --- Update Status ---
-$sql = "UPDATE report_of_repair
+$sql = "UPDATE report_of_environment
         SET
             status = :newStatus,
             update_at = NOW()
@@ -90,7 +90,7 @@ try {
         http_response_code(200);
         echo json_encode([
             "success" => true,
-            "message" => "สถานะและเวลาอัปเดตเรียบร้อยแล้ว"
+            "message" => "สถานะปัญหาสิ่งแวดล้อมอัปเดตเรียบร้อยแล้ว"
         ]);
     } elseif ($success && $stmt->rowCount() === 0) {
         http_response_code(404);
@@ -100,11 +100,11 @@ try {
         ]);
     } else {
         http_response_code(500);
-        echo json_encode(["success" => false, "message" => "ไม่สามารถอัปเดตสถานะและเวลาในฐานข้อมูลได้"]);
+        echo json_encode(["success" => false, "message" => "ไม่สามารถอัปเดตสถานะปัญหาสิ่งแวดล้อมในฐานข้อมูลได้"]);
     }
 } catch (PDOException $e) {
     http_response_code(500);
-    error_log("Database Query Error (Update Status/Time): " . $e->getMessage());
+    error_log("Database Query Error (Update Environment Status): " . $e->getMessage());
     echo json_encode([
         "success" => false,
         "message" => "Database query error during update."
@@ -112,7 +112,7 @@ try {
     exit();
 } catch (Exception $e) {
     http_response_code(500);
-    error_log("Unexpected Error (Update Status/Time): " . $e->getMessage());
+    error_log("Unexpected Error (Update Environment Status): " . $e->getMessage());
     echo json_encode(["success" => false, "message" => "An unexpected error occurred during update."]);
     exit();
 }

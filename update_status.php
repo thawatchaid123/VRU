@@ -1,13 +1,13 @@
 <?php
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: http://localhost:3000'); 
-header('Access-Control-Allow-Methods: POST, OPTIONS'); 
+header('Access-Control-Allow-Origin: http://localhost:3000');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
-header('Access-Control-Allow-Credentials: true'); 
-header('Access-Control-Max-Age: 86400'); 
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Max-Age: 86400');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200); 
+    http_response_code(200);
     exit(0);
 }
 
@@ -39,12 +39,23 @@ try {
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
-if (!isset($data['report_id']) || !isset($data['status'])) {
+if (!isset($data['report_id']) || !isset($data['status']) || !isset($data['type'])) {
     http_response_code(400);
     echo json_encode([
         'success' => false,
-        'error' => 'ข้อมูลไม่ครบถ้วน',
+        'error' => 'ข้อมูลไม่ครบถ้วน ต้องการ report_id, status, และ type',
         'received_data' => $data
+    ]);
+    exit();
+}
+
+// ตรวจสอบ type
+$validTypes = ['repair', 'environment'];
+if (!in_array($data['type'], $validTypes)) {
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'error' => 'ประเภทไม่ถูกต้อง ต้องเป็นหนึ่งใน: ' . implode(', ', $validTypes)
     ]);
     exit();
 }
@@ -62,14 +73,20 @@ if (!in_array($data['status'], $validStatuses)) {
 
 error_log('Received POST data: ' . print_r($data, true));
 
-// ตรวจสอบว่า report_id มีอยู่ในตาราง report_of_repair
-$stmtCheck = $conn->prepare("SELECT COUNT(*) FROM report_of_repair WHERE id = :report_id");
+// กำหนดตารางและคอลัมน์ตาม type
+$table = $data['type'] === 'repair' ? 'report_of_repair' : 'report_of_environment';
+$columns = $data['type'] === 'repair' 
+    ? 'name, lastname, phone, repair_name, location_name, details, image, status'
+    : 'name, lastname, phone, problem, location, details, image, status';
+
+// ตรวจสอบว่า report_id มีอยู่ในตารางที่ระบุ
+$stmtCheck = $conn->prepare("SELECT COUNT(*) FROM $table WHERE id = :report_id");
 $stmtCheck->execute([':report_id' => $data['report_id']]);
 if ($stmtCheck->fetchColumn() == 0) {
     http_response_code(404);
     echo json_encode([
         'success' => false,
-        'error' => 'ไม่พบรายการแจ้งซ่อมที่ระบุ (report_id: ' . $data['report_id'] . ')'
+        'error' => 'ไม่พบรายการที่ระบุ (report_id: ' . $data['report_id'] . ', type: ' . $data['type'] . ')'
     ]);
     exit();
 }
@@ -77,21 +94,21 @@ if ($stmtCheck->fetchColumn() == 0) {
 try {
     // อัปเดตสถานะ
     $stmt = $conn->prepare("
-        UPDATE report_of_repair 
+        UPDATE $table 
         SET status = :status
         WHERE id = :report_id
     ");
 
     $result = $stmt->execute([
-        ':status' => $data['status'], // ใช้ชื่อสถานะโดยตรง (เช่น 'pending', 'completed')
+        ':status' => $data['status'],
         ':report_id' => $data['report_id']
     ]);
 
     if ($stmt->rowCount() > 0) {
         // ดึงข้อมูลล่าสุดหลังจากอัปเดต
         $stmtFetch = $conn->prepare("
-            SELECT name, lastname, phone, repair_name, location_name, details, image, status
-            FROM report_of_repair 
+            SELECT $columns
+            FROM $table 
             WHERE id = :report_id
         ");
         $stmtFetch->execute([':report_id' => $data['report_id']]);
@@ -105,7 +122,7 @@ try {
     } else {
         echo json_encode([
             'success' => false,
-            'error' => 'ไม่พบรายการแจ้งซ่อมที่ระบุ (report_id: ' . $data['report_id'] . ')'
+            'error' => 'ไม่พบรายการที่ระบุ (report_id: ' . $data['report_id'] . ', type: ' . $data['type'] . ')'
         ]);
     }
 } catch (PDOException $e) {
@@ -116,3 +133,4 @@ try {
         'error' => 'เกิดข้อผิดพลาดในการอัพเดทข้อมูล: ' . $e->getMessage()
     ]);
 }
+?>

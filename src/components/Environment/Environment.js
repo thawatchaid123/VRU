@@ -2,22 +2,22 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import '../CSS/Repair.css';
 
-const API_URL = '/VRU-main/repair_api.php';
-const SUBMIT_API_URL = '/VRU-main/submit_repair_request_api.php';
+const API_URL = '/VRU-main/environment.php';
+const SUBMIT_API_URL = '/VRU-main/submit_environment_request_api.php';
 
-const apiFetchRepairs = async () => {
+const apiFetchEnvironments = async () => {
     const response = await fetch(API_URL);
     if (!response.ok) throw new Error(await response.json().catch(() => `HTTP error! status: ${response.status}`));
     const data = await response.json();
-    if (!Array.isArray(data)) throw new Error("ข้อมูลสถานที่ไม่ใช่ Array");
-    return data.filter(item => item && item.id && item.name && item.location);
+    if (!Array.isArray(data)) throw new Error("ข้อมูลปัญหาสิ่งแวดล้อมไม่ใช่ Array");
+    return data.filter(item => item && item.id && item.problem && item.location);
 };
 
-const Repair = () => {
-    const [repairs, setRepairs] = useState([]);
+const EnvironmentReport = () => {
+    const [environments, setEnvironments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [selectedRepair, setSelectedRepair] = useState(null);
+    const [selectedEnvironment, setSelectedEnvironment] = useState(null);
     const [formData, setFormData] = useState({ firstName: '', lastName: '', phone: '', details: '' });
     const [imageFile, setImageFile] = useState(null);
     const [phoneError, setPhoneError] = useState('');
@@ -28,17 +28,17 @@ const Repair = () => {
     const fetchData = useCallback(async () => {
         setIsLoading(true);
         setError(null);
-        setSelectedRepair(null);
+        setSelectedEnvironment(null);
         setFormData({ firstName: '', lastName: '', phone: '', details: '' });
         setImageFile(null);
         setPhoneError('');
         setSubmitMessage('');
         if (fileInputRef.current) fileInputRef.current.value = null;
         try {
-            setRepairs(await apiFetchRepairs());
+            setEnvironments(await apiFetchEnvironments());
         } catch (err) {
-            setError(`ไม่สามารถโหลดข้อมูลสถานที่ได้: ${err.message}`);
-            setRepairs([]);
+            setError(`ไม่สามารถโหลดข้อมูลปัญหาสิ่งแวดล้อมได้: ${err.message}`);
+            setEnvironments([]);
         } finally {
             setIsLoading(false);
         }
@@ -48,14 +48,14 @@ const Repair = () => {
 
     const validatePhone = (phone) => /^0[689]\d{8}$/.test(phone);
 
-    const handleSelectRepair = (repair) => {
-        setSelectedRepair(repair);
+    const handleSelectEnvironment = (environment) => {
+        setSelectedEnvironment(environment);
         setFormData({ firstName: '', lastName: '', phone: '', details: '' });
         setImageFile(null);
         setPhoneError('');
         setSubmitMessage('');
         if (fileInputRef.current) fileInputRef.current.value = null;
-        setTimeout(() => document.getElementById('repair-request-form')?.scrollIntoView({ behavior: 'smooth' }), 100);
+        setTimeout(() => document.getElementById('environment-request-form')?.scrollIntoView({ behavior: 'smooth' }), 100);
     };
 
     const handleInputChange = (e) => {
@@ -77,32 +77,30 @@ const Repair = () => {
 
     const handleImageChange = (e) => setImageFile(e.target.files?.[0] || null);
 
-    const handleCancelSelection = () => setSelectedRepair(null);
+    const handleCancelSelection = () => setSelectedEnvironment(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!selectedRepair || isSubmitting || !formData.firstName || !formData.lastName || !formData.phone || !formData.details || phoneError || !validatePhone(formData.phone)) return;
+        if (!selectedEnvironment || isSubmitting || !formData.firstName || !formData.lastName || !formData.phone || !formData.details || phoneError || !validatePhone(formData.phone)) return;
 
         setIsSubmitting(true);
         setSubmitMessage('');
         const data = new FormData();
-        data.append('locationId', selectedRepair.id);
-        data.append('locationName', selectedRepair.name);
-        data.append('locationDetails', selectedRepair.location);
         data.append('reporterFirstName', formData.firstName);
         data.append('reporterLastName', formData.lastName);
         data.append('reporterPhone', formData.phone);
-        data.append('repairDetails', formData.details);
-        data.append('requestTimestamp', new Date().toISOString());
-        if (imageFile) data.append('repairImage', imageFile, imageFile.name);
+        data.append('problem', selectedEnvironment.problem);
+        data.append('locationDetails', selectedEnvironment.location);
+        data.append('environmentDetails', formData.details);
+        if (imageFile) data.append('environmentImage', imageFile, imageFile.name);
 
         try {
             const response = await fetch(SUBMIT_API_URL, { method: 'POST', body: data });
             const result = await response.json();
             if (!response.ok) throw new Error(result.message || `Status: ${response.status}`);
-            toast.success(`ข้อมูลการแจ้งซ่อมสำหรับ "${selectedRepair.name} ${selectedRepair.location}" ถูกส่งแล้ว`, { position: "top-right", autoClose: 3000 });
-            setSubmitMessage(`แจ้งซ่อมสำหรับ "${selectedRepair.name}" เรียบร้อย`);
-            setSelectedRepair(null);
+            toast.success(`ข้อมูลการแจ้งปัญหาสิ่งแวดล้อมสำหรับ "${selectedEnvironment.problem} ${selectedEnvironment.location}" ถูกส่งแล้ว`, { position: "top-right", autoClose: 3000 });
+            setSubmitMessage(`แจ้งปัญหาสิ่งแวดล้อมสำหรับ "${selectedEnvironment.problem}" เรียบร้อย`);
+            setSelectedEnvironment(null);
         } catch (err) {
             toast.error(`เกิดข้อผิดพลาด: ${err.message}`, { position: "top-right", autoClose: 3000 });
             setSubmitMessage(`เกิดข้อผิดพลาด: ${err.message}`);
@@ -114,36 +112,36 @@ const Repair = () => {
     return (
         <div className="managementContainer">
             <ToastContainer />
-            <h2>ข้อมูลสถานที่/จุดซ่อม</h2>
+            <h2>ข้อมูลปัญหาสิ่งแวดล้อม</h2>
             <div className="dataTableSection">
-                <h3>เลือกสถานที่ที่ต้องการแจ้งซ่อม</h3>
-                {isLoading && <p>กำลังโหลดข้อมูลสถานที่...</p>}
+                <h3>เลือกปัญหาสิ่งแวดล้อมที่ต้องการแจ้ง</h3>
+                {isLoading && <p>กำลังโหลดข้อมูลปัญหาสิ่งแวดล้อม...</p>}
                 {error && <p className="errorText">{error}</p>}
-                {!isLoading && !error && !repairs.length && <p>ไม่พบข้อมูลสถานที่</p>}
-                {repairs.length > 0 && (
-                    <div className="repairGrid">
-                        {repairs.map((item) => (
+                {!isLoading && !error && !environments.length && <p>ไม่พบข้อมูลปัญหาสิ่งแวดล้อม</p>}
+                {environments.length > 0 && (
+                    <div className="environmentGrid">
+                        {environments.map((item) => (
                             <div
-                            key={item.id}
-                            className="repairCard"
-                            onClick={() => handleSelectRepair(item)}
-                            onKeyPress={(e) => (e.key === 'Enter' || e.key === ' ') && handleSelectRepair(item)}
-                            tabIndex={0}
-                            role="button"
-                            aria-label={`เลือกสถานที่ ${item.name}`}
-                        >
-                            <p>
-                                <span><strong>สิ่งชำรุด:</strong> {item.name ?? 'N/A'}</span>
-                                <span><strong>สถานที่:</strong> {item.location ?? 'N/A'}</span>
-                            </p>
-                        </div>
+                                key={item.id}
+                                className="environmentCard"
+                                onClick={() => handleSelectEnvironment(item)}
+                                onKeyPress={(e) => (e.key === 'Enter' || e.key === ' ') && handleSelectEnvironment(item)}
+                                tabIndex={0}
+                                role="button"
+                                aria-label={`เลือกปัญหาสิ่งแวดล้อม ${item.problem}`}
+                            >
+                                <p>
+                                    <span><strong>ปัญหา:</strong> {item.problem ?? 'N/A'}</span>
+                                    <span><strong>สถานที่:</strong> {item.location ?? 'N/A'}</span>
+                                </p>
+                            </div>
                         ))}
                     </div>
                 )}
             </div>
-            {selectedRepair && (
-                <div id="repair-request-form" className="crudForm repairRequestForm">
-                    <h3>แจ้งซ่อมสำหรับ: {selectedRepair.name} {selectedRepair.location}</h3>
+            {selectedEnvironment && (
+                <div id="environment-request-form" className="crudForm environmentRequestForm">
+                    <h3>แจ้งปัญหาสิ่งแวดล้อมสำหรับ: {selectedEnvironment.problem} {selectedEnvironment.location}</h3>
                     <hr style={{ margin: '20px 0', borderTop: '1px solid #e2e8f0' }} />
                     <form onSubmit={handleSubmit}>
                         <div className="formGroup">
@@ -173,7 +171,7 @@ const Repair = () => {
                             {phoneError && <p id="phone-error" className="inlineErrorText">{phoneError}</p>}
                         </div>
                         <div className="formGroup">
-                            <label>รายละเอียดการแจ้งซ่อม <span className="required">*</span></label>
+                            <label>รายละเอียดการแจ้งปัญหาสิ่งแวดล้อม <span className="required">*</span></label>
                             <textarea
                                 name="details"
                                 value={formData.details}
@@ -204,7 +202,7 @@ const Repair = () => {
                                 className="submitButton"
                                 disabled={isSubmitting || !formData.firstName || !formData.lastName || !formData.phone || !formData.details || phoneError || !validatePhone(formData.phone)}
                             >
-                                {isSubmitting ? 'กำลังส่ง...' : 'ยืนยันการแจ้งซ่อม'}
+                                {isSubmitting ? 'กำลังส่ง...' : 'ยืนยันการแจ้งปัญหาสิ่งแวดล้อม'}
                             </button>
                             <button type="button" className="cancelButton" onClick={handleCancelSelection} disabled={isSubmitting}>ยกเลิก</button>
                         </div>
@@ -215,4 +213,4 @@ const Repair = () => {
     );
 };
 
-export default Repair;
+export default EnvironmentReport;

@@ -1,117 +1,364 @@
-.repairGrid {
+/* ตัวแปร CSS สำหรับธีม */
+:root {
+    --primary-color: #00C851;
+    /* สีเขียวหลัก */
+    --secondary-color: #ff4444;
+    /* สีแดงสำหรับ error */
+    --text-color: #2d3748;
+    /* สีตัวอักษรหลัก */
+    --text-light: #4a5568;
+    /* สีตัวอักษรรอง */
+    --background-card: #ffffff;
+    /* สีพื้นหลังการ์ด */
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* เงา */
+    --border-radius: 10px;
+    /* ขอบโค้ง */
+    --padding: 16px;
+    /* ระยะห่างภายใน */
+    --font-size-base: 1rem;
+    /* ขนาดตัวอักษรพื้นฐาน */
+}
+
+/* รีเซ็ตและสไตล์ทั่วไป */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.managementContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--padding);
+}
+
+/* หัวข้อ */
+h2 {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+/* การ์ดสถานที่ */
+.repairGrid,
+.environmentGrid {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px 0;
+    gap: 1rem;
+    padding: 1rem 0;
     justify-content: center;
 }
 
-.repairCard {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    width: 250px;
-    flex: 0 0 auto;
+.repairCard,
+.environmentCard {
+    background: var(--background-card);
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    width: 280px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
-.repairCard:hover {
+.repairCard:hover,
+.environmentCard:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-.repairCard p {
-    margin: 10px 0;
-    font-size: 1rem;
-    color: #2d3748;
-    text-align: left;
+.repairCard:focus,
+.environmentCard:focus {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
-.repairCard strong {
-    color: #4a5568;
+/* ข้อความในการ์ด */
+.repairCard p,
+.environmentCard p {
+    font-size: var(--font-size-base);
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.3;
+    font-style: normal !important;
+    /* ลบตัวเอียงสำหรับข้อความทั้งหมดใน p */
+    font-family: 'Noto Sans Thai', sans-serif;
+    /* เพิ่ม font ที่รองรับภาษาไทย */
+}
+
+.repairCard span,
+.environmentCard span {
+    display: block;
+    margin-bottom: 0.1rem;
+    font-style: normal !important;
+    /* ลบตัวเอียงสำหรับข้อความใน span */
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+
+.repairCard strong,
+.environmentCard strong {
+    color: var(--text-light);
+    font-style: normal !important;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+
+/* ฟอร์มแจ้งซ่อม */
+.repairRequestForm {
+    background: var(--background-card);
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin: 1.5rem 0;
+}
+
+.repairRequestForm p {
+    font-size: var(--font-size-base);
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.formGroup {
+    margin-bottom: 1rem;
+}
+
+.formGroup label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.formGroup input,
+.formGroup textarea {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: var(--font-size-base);
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    transition: border-color 0.2s ease;
+    font-family: 'kanit';
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.formGroup textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.formGroup .required {
+    color: var(--secondary-color);
 }
 
 .inlineErrorText {
-    color: #e53e3e;
+    color: var(--secondary-color);
     font-size: 0.85rem;
-    margin-top: 4px;
-    margin-bottom: 0;
+    margin-top: 0.25rem;
 }
 
+.input-error {
+    border-color: var(--secondary-color) !important;
+}
+
+/* ปุ่ม */
+.formActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.submitButton,
+.cancelButton {
+    padding: 0.75rem 1.5rem;
+    font-size: var(--font-size-base);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.submitButton {
+    background: var(--primary-color);
+    color: #ffffff;
+}
+
+.submitButton:hover:not(:disabled) {
+    background: #00a139;
+    transform: translateY(-2px);
+}
+
+.submitButton:disabled {
+    background: #b3e5c4;
+    cursor: not-allowed;
+}
+
+.cancelButton {
+    background: #e2e8f0;
+    color: var(--text-color);
+}
+
+.cancelButton:hover:not(:disabled) {
+    background: #cbd5e0;
+    transform: translateY(-2px);
+}
+
+.cancelButton:disabled {
+    background: #edf2f7;
+    cursor: not-allowed;
+}
+
+/* ข้อความแจ้งผล */
 .successText {
-    color: #38a169;
-    font-size: 1rem;
-    margin-bottom: 16px;
+    color: var(--primary-color);
+    font-size: var(--font-size-base);
     text-align: center;
     font-weight: 500;
+    margin: 1rem 0;
+}
+
+.errorText {
+    color: var(--secondary-color);
+    font-size: var(--font-size-base);
+    text-align: center;
+    margin: 1rem 0;
+}
+
+/* Toast Notifications */
+.Toastify__toast--success {
+    background: var(--primary-color) !important;
+    color: #ffffff !important;
+    border-radius: 6px !important;
+    font-size: var(--font-size-base) !important;
+}
+
+.Toastify__toast--error {
+    background: var(--secondary-color) !important;
+    color: #ffffff !important;
+    border-radius: 6px !important;
+    font-size: var(--font-size-base) !important;
+}
+
+.Toastify__close-button {
+    color: #ffffff !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-radius: 50% !important;
+    width: 24px !important;
+    height: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    transition: background 0.2s ease !important;
+}
+
+.Toastify__close-button:hover {
+    background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.Toastify__close-button:focus {
+    outline: 2px solid #ffffff !important;
+    outline-offset: 2px !important;
 }
 
 /* Responsive Design */
 
-/* มือถือ (< 768px) */
-@media (max-width: 767px) {
+/* มือถือ (< 640px) */
+@media (max-width: 639px) {
+    .managementContainer {
+        padding: 12px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    .repairCard,
+    .environmentCard {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .repairGrid,
+    .environmentGrid {
+        gap: 12px;
+    }
+
+    .repairRequestForm {
+        padding: 12px;
+    }
+
+    .formGroup input,
+    .formGroup textarea {
+        font-size: 0.9rem;
+    }
+
+    .formActions {
+        flex-direction: column;
+    }
+
+    .submitButton,
+    .cancelButton {
+        width: 100%;
+    }
+
+    .Toastify__close-button {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}
+
+/* Tablet (640px - 1024px) */
+@media (min-width: 640px) and (max-width: 1024px) {
     .managementContainer {
         padding: 16px;
     }
 
     h2 {
-        font-size: 1.6rem;
+        font-size: 1.75rem;
     }
 
     h3 {
-        font-size: 1.3rem;
+        font-size: 1.35rem;
     }
 
-    .repairCard {
-        width: calc(100% - 40px);
-        padding: 15px;
+    .repairCard,
+    .environmentCard {
+        width: calc(50% - 0.5rem);
     }
 
-    .repairGrid {
-        padding: 15px;
-        gap: 15px;
-    }
-}
-
-/* iPad และแท็บเล็ต (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .managementContainer {
-        padding: 20px;
-    }
-
-    h2 {
-        font-size: 1.8rem;
-    }
-
-    h3 {
-        font-size: 1.4rem;
-    }
-
-    .repairCard {
-        width: calc(50% - 30px);
-    }
-
-    .repairGrid {
-        justify-content: center;
+    .repairRequestForm {
+        padding: 16px;
     }
 }
 
 /* เดสก์ท็อป (> 1024px) */
 @media (min-width: 1025px) {
     h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
 
     h3 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
-    .repairCard {
-        width: 250px;
-    }
-
-    .repairGrid {
-        justify-content: center;
+    .repairCard,
+    .environmentCard {
+        width: 280px;
     }
 }

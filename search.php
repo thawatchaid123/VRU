@@ -47,7 +47,7 @@ try {
     // รับค่าเบอร์โทรและป้องกัน XSS
     $search_phone = htmlspecialchars(trim($input['employee_id']));
 
-    // เตรียมคำสั่ง SQL
+    // เตรียมคำสั่ง SQL ด้วย UNION ALL
     $stmt = $pdo->prepare("
         SELECT
             id,
@@ -61,9 +61,29 @@ try {
             status,
             created_at,
             rating,
-            comment
+            comment,
+            'repair' AS type
         FROM
             report_of_repair
+        WHERE
+            phone = :search_phone
+        UNION ALL
+        SELECT
+            id,
+            name,
+            lastname,
+            phone,
+            problem,
+            location,
+            details,
+            image,
+            status,
+            created_at,
+            rating,
+            comment,
+            'environment' AS type
+        FROM
+            report_of_environment
         WHERE
             phone = :search_phone
         ORDER BY
@@ -74,16 +94,16 @@ try {
     $stmt->execute(['search_phone' => $search_phone]);
 
     // ดึงข้อมูลทั้งหมด
-    $repair_reports_data = $stmt->fetchAll();
+    $reports_data = $stmt->fetchAll();
 
     // ตรวจสอบว่าพบข้อมูลหรือไม่
-    if (empty($repair_reports_data)) {
+    if (empty($reports_data)) {
         $response['success'] = true;
         $response['reports'] = [];
-        $response['message'] = 'ไม่พบข้อมูลการแจ้งซ่อมสำหรับเบอร์โทรนี้';
+        $response['message'] = 'ไม่พบข้อมูลการแจ้งซ่อมหรือปัญหาสิ่งแวดล้อมสำหรับเบอร์โทรนี้';
     } else {
         $response['success'] = true;
-        $response['reports'] = $repair_reports_data;
+        $response['reports'] = $reports_data;
     }
 
 } catch (PDOException $e) {

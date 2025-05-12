@@ -2,66 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import "./App.css";
-import AppHeader from "./components/AppHeader";
-import Footer from "./components/Footer";
+import AppHeader from "./components/All/AppHeader";
+import Footer from "./components/All/Footer";
 import HomePage from "./components/HomePage";
-import ReportForm from './components/ReportForm';
-import Result from "./components/Result";
-import Register from "./components/Register";
 import Login from "./components/Login";
-import EmployeeDashboard from './components/EmployeeDashboard';
-import TechnicianDashboard from './components/TechnicianDashboard';
-import Dashboard from './components/Dashboard';
-import EditProfile from './components/EditProfile';
-import ChartPage from './components/ChartPage';
-import RepairStats from './components/RepairStats';
-import Admin from "./components/Admin";
-import Edit from "./components/Edit";
-// import MachineManagement from "./components/Repair/MachineManagement";
+import Dashboard from './components/Admin/Dashboard';
+import EditProfile from './components/Admin/EditProfile';
+import RepairStats from './components/Admin/RepairStats';
 import RepairInfoManagement from "./components/Repair/RepairInfoManagement";
-import EnvironmentalInfoManagement from "./components/Environment/EnvironmentalInfoManagement";
 import Repair from "./components/Repair/Repair";
-import Update from "./components/Repair/Update";
-import Check from "./components/Repair/Check";
-
-const PrivateRoute = ({ children, allowedRoles }) => {
-  const location = useLocation();
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    try {
-      const storedUser = localStorage.getItem('user');
-      setUser(storedUser ? JSON.parse(storedUser) : null);
-    } catch (error) {
-      console.error("Error parsing user for PrivateRoute:", error);
-      localStorage.removeItem('user');
-      setUser(null);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [location.pathname]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-
-  if (allowedRoles && !allowedRoles.includes(user.user_type)) {
-    console.warn(`User type "${user.user_type}" tried to access restricted route.`);
-    switch (user.user_type) {
-      case 'employee': return <Navigate to="/employee-dashboard" replace />;
-      case 'technician': return <Navigate to="/technician-dashboard" replace />;
-      case 'admin': return <Navigate to="/dashboard" replace />;
-      default: return <Navigate to="/login" replace />;
-    }
-  }
-
-  return children;
-};
+import Update from "./components/Admin/Update";
+import Check from "./components/Check";
+import Environment from "./components/Environment/Environment";
+import EnvironmentInfoManagement from "./components/Environment/EnvironmentInfoManagement";
 
 function App() {
   const [searchResults, setSearchResults] = useState(null);
@@ -89,34 +42,16 @@ function App() {
         <div className="container">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/report" element={<ReportForm onSubmit={handleReportSubmit} />} />
             <Route path="/check" element={<Check searchResults={searchResults} />} />
-            <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-
-            {/* Shared */}
-            <Route path="/edit-profile" element={<PrivateRoute allowedRoles={['employee', 'technician', 'admin']}><EditProfile /></PrivateRoute>} />
-            <Route path="/charts" element={<PrivateRoute allowedRoles={['employee', 'technician', 'admin']}><ChartPage /></PrivateRoute>} />
-
-            {/* Employee */}
-            <Route path="/employee-dashboard" element={<PrivateRoute allowedRoles={['employee']}><EmployeeDashboard /></PrivateRoute>} />
-
-            {/* Technician / Admin */}
-            {/* <Route path="/technician-dashboard" element={<PrivateRoute allowedRoles={['technician', 'admin']}><TechnicianDashboard /></PrivateRoute>} /> */}
-            {/* <Route path="/machine-management" element={<PrivateRoute allowedRoles={['admin', 'technician']}><MachineManagement /></PrivateRoute>} /> */}
-            <Route path="/repair-stats" element={<PrivateRoute allowedRoles={['admin', 'technician']}><RepairStats /></PrivateRoute>} />
-
-            {/* Admin */}
-            <Route path="/dashboard" element={<PrivateRoute allowedRoles={['admin']}><Dashboard /></PrivateRoute>} />
-            {/* <Route path="/admin" element={<PrivateRoute allowedRoles={['admin']}><Admin /></PrivateRoute>} /> */}
-            <Route path="/edit" element={<PrivateRoute allowedRoles={['admin']}><Edit /></PrivateRoute>} />
-            
+            <Route path="/edit-profile" element={<EditProfile />} />
+            <Route path="/repair-stats" element={<RepairStats />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/add-repair" element={<RepairInfoManagement /> }/>
             <Route path="/repair" element={<Repair /> }/>
             <Route path="/update-status" element={<Update /> }/>
-
-            <Route path="/add-environmental" element={<EnvironmentalInfoManagement /> }/>
-  
+            <Route path="/add-environmental" element={<EnvironmentInfoManagement /> }/>
+            <Route path="/environment" element={<Environment /> }/>
           </Routes>
         </div>
       </main>

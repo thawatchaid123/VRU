@@ -2,9 +2,9 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/RepairInfoManagement.css';
 
-const API_URL = '/VRU-main/repair_api.php';
+const API_URL = '/VRU-main/environment.php';
 
-const apiFetchLocations = async () => {
+const apiFetchEnvironments = async () => {
     const response = await fetch(API_URL);
     if (!response.ok) {
         const errorData = await response.json().catch(() => ({ error: 'Failed to parse error response from server' }));
@@ -21,27 +21,27 @@ const apiFetchLocations = async () => {
     }
 };
 
-const apiAddLocation = async ({ name, location }) => {
+const apiAddEnvironment = async ({ problem, location }) => {
     const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, location }),
+        body: JSON.stringify({ problem, location }),
     });
     const data = await response.json();
     if (!response.ok) {
         if (response.status === 409) {
-            throw new Error('ชื่อสถานที่นี้มีอยู่แล้ว');
+            throw new Error('ปัญหานี้มีอยู่แล้ว');
         }
         throw new Error(data.error || `HTTP error! status: ${response.status} - ${response.statusText}`);
     }
     return data;
 };
 
-const apiUpdateLocation = async (id, { name, location }) => {
+const apiUpdateEnvironment = async (id, { problem, location }) => {
     const response = await fetch(API_URL, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, name, location }),
+        body: JSON.stringify({ id, problem, location }),
     });
     const data = await response.json();
     if (!response.ok) {
@@ -53,7 +53,7 @@ const apiUpdateLocation = async (id, { name, location }) => {
     return data;
 };
 
-const apiDeleteLocation = async (id) => {
+const apiDeleteEnvironment = async (id) => {
     const response = await fetch(`${API_URL}?id=${id}`, {
         method: 'DELETE',
     });
@@ -67,17 +67,16 @@ const apiDeleteLocation = async (id) => {
     return data;
 };
 
-const RepairInfoManagement = () => {
+const EnvironmentInfoManagement = () => {
     const navigate = useNavigate();
     const [isAuthChecked, setIsAuthChecked] = useState(false);
     const [loggedInUser, setLoggedInUser] = useState(null);
-
-    const [locations, setLocations] = useState([]);
+    const [environments, setEnvironments] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState(null);
     const [isEditing, setIsEditing] = useState(null);
-    const [locationName, setLocationName] = useState('');
+    const [problem, setProblem] = useState('');
     const [location, setLocation] = useState('');
     const formRef = useRef(null);
 
@@ -111,14 +110,14 @@ const RepairInfoManagement = () => {
         setIsLoading(true);
         setError(null);
         try {
-            const data = await apiFetchLocations();
+            const data = await apiFetchEnvironments();
             if (Array.isArray(data)) {
-                setLocations(data);
+                setEnvironments(data);
             } else {
                 throw new Error("ข้อมูลที่ได้รับจาก Server ไม่ถูกต้อง (ไม่ใช่ Array)");
             }
         } catch (err) {
-            setError(`ไม่สามารถโหลดข้อมูลสถานที่/การซ่อมได้: ${err.message}`);
+            setError(`ไม่สามารถโหลดข้อมูลสิ่งแวดล้อมได้: ${err.message}`);
         } finally {
             setIsLoading(false);
         }
@@ -132,7 +131,7 @@ const RepairInfoManagement = () => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        if (name === 'locationName') setLocationName(value);
+        if (name === 'problem') setProblem(value);
         if (name === 'location') setLocation(value);
         if (error) setError(null);
     };
@@ -142,8 +141,8 @@ const RepairInfoManagement = () => {
         if (!loggedInUser) {
             navigate('/login', { replace: true }); return;
         }
-        if (!locationName.trim() || !location.trim()) {
-            setError('กรุณากรอกชื่อสถานที่และตำแหน่ง');
+        if (!problem.trim() || !location.trim()) {
+            setError('กรุณากรอกปัญหาและสถานที่');
             return;
         }
         setError(null);
@@ -151,18 +150,18 @@ const RepairInfoManagement = () => {
 
         try {
             if (isEditing) {
-                await apiUpdateLocation(isEditing, { name: locationName.trim(), location: location.trim() });
-                alert('อัปเดตข้อมูลเรียบร้อยแล้ว');
+                await apiUpdateEnvironment(isEditing, { problem: problem.trim(), location: location.trim() });
+                alert('อัปเดตข้อมูลสิ่งแวดล้อมเรียบร้อยแล้ว');
             } else {
-                await apiAddLocation({ name: locationName.trim(), location: location.trim() });
-                alert('เพิ่มข้อมูลใหม่เรียบร้อยแล้ว');
+                await apiAddEnvironment({ problem: problem.trim(), location: location.trim() });
+                alert('เพิ่มข้อมูลสิ่งแวดล้อมเรียบร้อยแล้ว');
             }
-            setLocationName('');
+            setProblem('');
             setLocation('');
             setIsEditing(null);
             if (loggedInUser) fetchData();
         } catch (err) {
-            setError(err.message || (isEditing ? 'ไม่สามารถอัปเดตข้อมูลได้' : 'ไม่สามารถเพิ่มข้อมูลได้'));
+            setError(err.message || (isEditing ? 'ไม่สามารถอัปเดตข้อมูลสิ่งแวดล้อมได้' : 'ไม่สามารถเพิ่มข้อมูลสิ่งแวดล้อมได้'));
         } finally {
             setIsSubmitting(false);
         }
@@ -172,9 +171,9 @@ const RepairInfoManagement = () => {
         if (!loggedInUser) {
             navigate('/login', { replace: true }); return;
         }
-        if (item && item.id && typeof item.name !== 'undefined' && typeof item.location !== 'undefined') {
+        if (item && item.id && typeof item.problem !== 'undefined' && typeof item.location !== 'undefined') {
             setIsEditing(item.id);
-            setLocationName(item.name);
+            setProblem(item.problem);
             setLocation(item.location);
             setError(null);
             if (formRef.current) {
@@ -194,18 +193,18 @@ const RepairInfoManagement = () => {
             return;
         }
 
-        if (window.confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบรายการ ID: ${id}?`)) {
+        if (window.confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบปัญหาสิ่งแวดล้อม ID: ${id}?`)) {
             setIsSubmitting(true);
             setError(null);
             try {
-                await apiDeleteLocation(id);
-                alert('ลบข้อมูลเรียบร้อยแล้ว');
+                await apiDeleteEnvironment(id);
+                alert('ลบข้อมูลสิ่งแวดล้อมเรียบร้อยแล้ว');
                 if (isEditing === id) {
                     handleCancelEdit();
                 }
                 if (loggedInUser) fetchData();
             } catch (err) {
-                setError(`ไม่สามารถลบข้อมูลได้: ${err.message}`);
+                setError(`ไม่สามารถลบข้อมูลสิ่งแวดล้อมได้: ${err.message}`);
             } finally {
                 setIsSubmitting(false);
             }
@@ -214,7 +213,7 @@ const RepairInfoManagement = () => {
 
     const handleCancelEdit = () => {
         setIsEditing(null);
-        setLocationName('');
+        setProblem('');
         setLocation('');
         setError(null);
     };
@@ -229,21 +228,21 @@ const RepairInfoManagement = () => {
 
     return (
         <div className="managementContainer">
-            <h2>จัดการข้อมูลการซ่อม</h2>
+            <h2>จัดการข้อมูลสิ่งแวดล้อม</h2>
             <form onSubmit={handleSubmit} className="crudForm" ref={formRef}>
-                <h3>{isEditing ? 'แก้ไขข้อมูล' : 'เพิ่มข้อมูลใหม่'}</h3>
+                <h3>{isEditing ? 'แก้ไขข้อมูลสิ่งแวดล้อม' : 'เพิ่มข้อมูลใหม่'}</h3>
                 {error && <p className="errorText">{error}</p>}
                 <div className="formGroup">
-                    <label htmlFor="locationName">
-                        จุดซ่อม <span className="required">*</span>
+                    <label htmlFor="problem">
+                        ปัญหาสิ่งแวดล้อม <span className="required">*</span>
                     </label>
                     <input
                         type="text"
-                        id="locationName"
-                        name="locationName"
-                        value={locationName}
+                        id="problem"
+                        name="problem"
+                        value={problem}
                         onChange={handleInputChange}
-                        placeholder="เช่น ห้องน้ำชาย"
+                        placeholder="เช่น มลพิษทางอากาศ"
                         required
                         aria-required="true"
                         disabled={isSubmitting}
@@ -259,7 +258,7 @@ const RepairInfoManagement = () => {
                         name="location"
                         value={location}
                         onChange={handleInputChange}
-                        placeholder="เช่น ชั้น 2"
+                        placeholder="เช่น อาคาร A ชั้น 2"
                         required
                         aria-required="true"
                         disabled={isSubmitting}
@@ -280,22 +279,22 @@ const RepairInfoManagement = () => {
                 <h3>รายการข้อมูลที่มีอยู่</h3>
                 {isLoading && <p>กำลังโหลดข้อมูล...</p>}
                 {!isLoading && error && <p className="errorText">{error}</p>}
-                {!isLoading && !error && locations.length === 0 && <p>ยังไม่มีข้อมูล</p>}
-                {!isLoading && !error && locations.length > 0 && (
+                {!isLoading && !error && environments.length === 0 && <p>ยังไม่มีข้อมูล</p>}
+                {!isLoading && !error && environments.length > 0 && (
                     <div className="tableWrapper">
                         <table className="dataTable simpleTable">
                             <thead>
                                 <tr>
-                                    <th>จุดซ่อม</th>
+                                    <th>ปัญหาสิ่งแวดล้อม</th>
                                     <th>สถานที่</th>
                                     <th>การดำเนินการ</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {locations.map((item) => (
+                                {environments.map((item) => (
                                     item && item.id ? (
                                         <tr key={item.id}>
-                                            <td>{item.name ?? 'N/A'}</td>
+                                            <td>{item.problem ?? 'N/A'}</td>
                                             <td>{item.location ?? 'N/A'}</td>
                                             <td>
                                                 <button onClick={() => handleEdit(item)} className="editButton" disabled={isSubmitting}>
@@ -317,4 +316,4 @@ const RepairInfoManagement = () => {
     );
 };
 
-export default RepairInfoManagement;
+export default EnvironmentInfoManagement;
