@@ -73,7 +73,7 @@ const Dashboard = () => {
                     แก้ไขข้อมูลส่วนตัว
                 </button>
                 <button className="navButton" onClick={() => navigateTo('/repair-stats')}>
-                    ดูสถิติการซ่อม
+                    ดูสถิติ
                 </button>
                 
                 {/* {loggedInUser.user_type === 'admin' && (
